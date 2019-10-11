@@ -7,7 +7,7 @@ class Header extends Component{
         <div className="css-myHeader">
             <h1><strong>FreeLance Pro</strong></h1>
             <div className="css-login">
-                <a id="login"></a>Login | <a id="sign-up"></a> Signup
+                <button className="css_login_button" id="login">Login</button> | <button className="css_signup_button" id="sign-up">Signup</button> 
             </div>
         <hr></hr>
         </div>
