@@ -29,3 +29,6 @@ code {
     padding-bottom:40px;
     width:80%;
 }
+button:hover {
+  opacity:50;
+}

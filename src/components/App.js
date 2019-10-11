@@ -6,6 +6,7 @@ import Header from './header/header'
 
 //routes
 import LandingPage from '../routes/landing_page/landing_page'
+import Login from '../routes/login/login'
 
 class App extends Component{
   render(){
@@ -15,8 +16,13 @@ class App extends Component{
       <Switch>
         <Route
           exact
-          path={'/Welcome'}
+          path={'/'}
           component={LandingPage}
+        />
+        <Route
+          exact
+          path={'/login'}
+          component={Login}
         />
       </Switch>
     </div>
