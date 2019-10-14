@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import './header.css'
+import {Link} from 'react-router-dom'
 
 class Header extends Component{
     render(){
         return (
         <div className="css-myHeader">
-            <h1><strong>FreeLance Pro</strong></h1>
+            <h1><strong><Link to={''} className="css_header_links" >FreeLance Pro</Link></strong></h1>
             <div className="css-login">
-                <button className="css_login_button" id="login">Login</button> | <button className="css_signup_button" id="sign-up">Signup</button> 
+                <Link  to={'/login'} className="css_header_links css_login_button" id="login">Login</Link> | <Link to={'/register'} className="css_header_links css_signup_button" id="sign-up">Signup</Link> 
             </div>
         <hr></hr>
         </div>

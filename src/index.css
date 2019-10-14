@@ -32,3 +32,32 @@ code {
 button:hover {
   opacity:50;
 }
+form {
+    border:1px solid #ccc;
+    padding-right:60px;
+    padding-left:30px;
+}
+input[type=text], input[type=password],input[type=email] ,input[type=tel],input[type=number],textarea  {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+.css_button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  margin-top:20px;
+  margin-bottom:20px;
+}
+.css_cancel_button {
+  padding: 14px 20px;
+  background-color: #f44336;
+}
