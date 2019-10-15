@@ -2,7 +2,6 @@ import React,{Component} from 'react'
 import './login.css'
 
 
-import FlpContext from '../../contexts/flpContext'
 
 class Login extends Component{
 

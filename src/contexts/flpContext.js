@@ -7,21 +7,22 @@ const FlpContext = React.createContext({
             name:"Mundy Moon",
             email:"MundyMoon@gmail.com",
             phone:"555-9334-1234",
-            currentPromo:"",
+            currentPromo:1,
         },{
             id:2,
             name:"Debra Dewi",
             email:"DebraDewi@gmail.com",
             phone:"555-9134-1234",
-            currentPromo:"Spring10",
+            currentPromo:"",
         },{
             id:3,
             name:"Symbolic Cindy",
             email:"Symbolic Cindy@gmail.com",
             phone:"555-9334-1134",
-            currentPromo:"Spring10",
+            currentPromo:3,
         }
     ],
+    promotions:"",
     sayHello:""
 })
 

@@ -1,0 +1,20 @@
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th,td{
+  padding: 15px;
+}
+th{
+  text-align: left;
+}
+
+.css_client{
+  margin-left:auto;
+  margin-right:auto;
+  width:85%;
+  border:1px solid grey;
+  padding:30px;
+  margin-top:20px;
+  margin-bottom:25px;
+}

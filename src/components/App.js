@@ -9,7 +9,7 @@ import LandingPage from '../routes/landing_page/landing_page'
 import Login from '../routes/login/login'
 import Register from '../routes/register/register'
 import ClientList from '../routes/clientList/clientList'
-
+import AddClient from '../routes/addClient/addClient'
 
 //contexts
 import FlpContext from '../contexts/flpContext'
@@ -55,6 +55,11 @@ class App extends Component{
             path={'/client'}
             component={ClientList}
           />
+          <Route
+            exact 
+            path={'/addClient'}
+            component={AddClient}
+            />
         </Switch>   
       </div>
       </FlpContext.Provider>
