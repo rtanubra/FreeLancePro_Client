@@ -21,6 +21,20 @@ const ValidateHelper = {
         }
         return [true,0]
     },
+    emailChek(email){
+        var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if (!re.test(email.toLowerCase())){
+            return [false,"Please input a valid email address -such as- myEmail@gmail.com"]
+        }
+        return [true, 0]
+    },
+    phoneCheck(phone){
+        var re = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]?\d{3}[\s.-]?\d{4}$/
+        if (!re.test(phone)){
+            return [false,"input in ###-###-#### "]
+        }
+        return [true,0]
+    },
     user_nameCheck(name){
         if (name.length<4 || name.length>20){
             return [false,"Should be between 4-20 characters"]
