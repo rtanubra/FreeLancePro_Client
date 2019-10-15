@@ -9,7 +9,7 @@ class ClientSummary extends Component{
     static contextType = flpContext
 
     render(){
-        console.log(this.context.services)
+
         let clientServices = this.context.services.filter(service=>{
             return service.client_id == this.props.id
         })

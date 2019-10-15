@@ -71,7 +71,8 @@ const StartingContext= {
             promotion_used:3,
             client_id:3
         },
-    ]
+    ],
+    addClient:""
 }
 
 export default StartingContext

@@ -20,15 +20,23 @@ class App extends Component{
         ...StartingContext
   }
   
-  sayHello = ()=>{
-    console.log("Hello I am here")
+  addClient = (client)=>{
+
+    const newId = this.state.clients[this.state.clients.length-1].id+1
+    client.id=newId
+    const clients = [...this.state.clients]
+    clients[newId-1]={...client}
+    this.setState({
+      clients
+    })
+
   }
 
   render(){
     const contextValue = {
             ...this.state
     }
-    contextValue.sayHello = this.sayHello
+    contextValue.addClient = this.addClient
 
     return (
       <FlpContext.Provider value={contextValue}>

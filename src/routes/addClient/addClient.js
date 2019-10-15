@@ -1,11 +1,17 @@
 import React, {Component} from  'react'
+import {Redirect} from 'react-router-dom'
 import './addClient.css'
 
-import ValidateHelper from '../../services/validator'
 
+//validation services and error boxes
+import ValidateHelper from '../../services/validator'
 import ErrorMessage from '../../components/errorMessage/errorMessage'
 
+//context
+import FlpContext from '../../contexts/flpContext'
+
 class AddClient extends Component{
+    static contextType= FlpContext
     state = {
         name:"Example Name",
         phone:"905-323-5555",
@@ -24,6 +30,21 @@ class AddClient extends Component{
     }
     handleSubmit = (event) =>{
         event.preventDefault()
+        if (this.state.error.error_email || this.state.error.error_name || this.state.error.error_phone ){
+            //do nothing have errors
+        }
+        else {
+            const client = {
+                name:this.state.name,
+                phone:this.state.phone,
+                email:this.state.email
+            }
+            this.context.addClient(client)
+        }
+        this.setState({
+            success:true
+        })
+        
     }
     handleEmailChange= (event)=>{
         const email = event.target.value
@@ -110,6 +131,9 @@ class AddClient extends Component{
     }
 
     render(){
+        if (this.state.success){
+            return <Redirect to={'/client'}/>
+        }
         return (<>
             <h2 className="css_h2_header" >Add a New Client</h2>
             <div className="css_body_middle" >
