@@ -10,7 +10,10 @@ class ClientList extends Component{
     static contextType = FlpContext
     
     render(){
-        const clientListTables = this.context.clients.map(client=>{
+        const clientListNonDelete = this.context.clients.filter(client=>{
+            return client.deleted=== false
+        })
+        const clientListTables = clientListNonDelete.map(client=>{
             return <ClientSummary 
                 id={client.id}
                 name={client.name} 

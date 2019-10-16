@@ -11,13 +11,13 @@ class Register extends Component{
                 <h2>Register Page</h2>
                 <p>Give us a try, register with FreeLance Pro</p>
                 <hr></hr>
-                <label for="email"><b>Email</b></label>
+                <label htmlFor="email"><b>Email</b></label>
                 <input type="text" placeholder="Enter Email" name="email" required></input>
                 <br></br>
-                <label for="psw"><b>Password</b></label>
+                <label htmlFor="psw"><b>Password</b></label>
                 <input type="password" placeholder="Enter Password" name="psw" required></input>
                 <br></br>
-                <label for="rpt_psw"><b>Repeat Password</b></label>
+                <label htmlFor="rpt_psw"><b>Repeat Password</b></label>
                 <input type="password" placeholder="Repeat Password" name="rpt_psw" required></input>
                 <br></br>
                 <div className="clearfix">

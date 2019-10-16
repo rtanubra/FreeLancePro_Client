@@ -10,6 +10,7 @@ import Login from '../routes/login/login'
 import Register from '../routes/register/register'
 import ClientList from '../routes/clientList/clientList'
 import AddClient from '../routes/addClient/addClient'
+import AddService from '../routes/addService/addService'
 
 //contexts
 import FlpContext from '../contexts/flpContext'
@@ -20,10 +21,12 @@ class App extends Component{
         ...StartingContext
   }
   
+  //context functions this could also be created directly in context for cleanliness
   addClient = (client)=>{
 
     const newId = this.state.clients[this.state.clients.length-1].id+1
     client.id=newId
+    client.deleted=false
     const clients = [...this.state.clients]
     clients[newId-1]={...client}
     this.setState({
@@ -31,12 +34,25 @@ class App extends Component{
     })
 
   }
+  addService = (service)=>{
+    const newId = this.state.services[this.state.services.length-1].id+1
+    service.id=newId
+    service.deleted=false
+    const services = [...this.state.services]
+    services[newId-1] = {...service}
+    console.log(services)
+    this.setState({
+      services
+    })
+  }
+
 
   render(){
     const contextValue = {
             ...this.state
     }
     contextValue.addClient = this.addClient
+    contextValue.addService = this.addService
 
     return (
       <FlpContext.Provider value={contextValue}>
@@ -67,6 +83,11 @@ class App extends Component{
             exact 
             path={'/addClient'}
             component={AddClient}
+            />
+          <Route
+            exact 
+            path={'/addService/:clientId'}
+            component={AddService}
             />
         </Switch>   
       </div>
