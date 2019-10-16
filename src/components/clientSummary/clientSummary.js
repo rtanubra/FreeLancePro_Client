@@ -6,9 +6,17 @@ import './clientSummary.css'
 import flpContext from '../../contexts/flpContext'
 import SericeSummary from '../serviceSummary/serviceSummary'
 
+import DeleteWarning from '../../components/deleteWarning/deleteWarning'
+
 class ClientSummary extends Component{
     static contextType = flpContext
-
+    state = {
+        deleteOn:false
+    }
+    handleClientDelete= ()=>{
+        const deleteOn = !this.state.deleteOn
+        this.setState({deleteOn})
+    }
     render(){
         let servicesNotDeleted = this.context.services.filter(service=>{
             return service.deleted===false
@@ -38,20 +46,23 @@ class ClientSummary extends Component{
 
         return (
             <div className="css_client">
-                <h4>{this.props.name}</h4>
+                <h4><i className="fa fa-edit"></i> - {this.props.name} - <span><button onClick={this.handleClientDelete} ><i className="fa fa-trash" aria-hidden="true"></i></button></span></h4> 
                 <br></br>
+                {this.state.deleteOn? <DeleteWarning handleClientDelete={this.handleClientDelete} clientId={parseInt(this.props.id)} />:""}
                 <Link to={`/addService/${this.props.id}`} ><button className="css_button">Add Service</button></Link>
                 <p>Email:{this.props.email}</p>
                 <p>Phone:{this.props.phone}</p>
                 <p>Open Promotions:{promoName}</p>
+                
                 <table>
                     <thead>
                     <tr>
-                        <th>Service ID</th>
-                        <th>Last Service Notes</th>
+                        <th>ID</th>
+                        <th>Notes</th>
                         <th>Cost</th>
-                        <th>Number of People</th>
-                        <th>Promo Used</th>
+                        <th># People</th>
+                        <th>Promo</th>
+                        <th>Del</th>
                     </tr>
                     </thead>
                     <tbody>

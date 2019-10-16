@@ -25,7 +25,9 @@ const FlpContext = React.createContext({
     promotions:"",
     sayHello:"",
     addClient:"",
-    addService:""
+    addService:"",
+    deleteClient:"",
+    deleteService:""
 })
 
 export default FlpContext

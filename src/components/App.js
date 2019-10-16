@@ -32,7 +32,20 @@ class App extends Component{
     this.setState({
       clients
     })
-
+  }
+  deleteClient = (clientId)=>{
+    const clients = [...this.state.clients]
+    clients[clientId-1].deleted = true
+    this.setState({
+      clients
+    })
+  }
+  deleteService = (serviceId)=>{
+    const services = [...this.state.services]
+    services[serviceId-1].deleted=true
+    this.setState({
+      services
+    })
   }
   addService = (service)=>{
     const newId = this.state.services[this.state.services.length-1].id+1
@@ -53,6 +66,8 @@ class App extends Component{
     }
     contextValue.addClient = this.addClient
     contextValue.addService = this.addService
+    contextValue.deleteClient = this.deleteClient
+    contextValue.deleteService = this.deleteService
 
     return (
       <FlpContext.Provider value={contextValue}>
