@@ -57,7 +57,7 @@ class AddClient extends Component{
 
         //need to validate
         let valid = ValidateHelper.emailChek(email)
-        error_email = valid[0]
+        error_email = !valid[0]
         error_message_email = valid[1]
         this.setState({
             email,
@@ -85,7 +85,7 @@ class AddClient extends Component{
 
         //need a phone number validator
         const valid = ValidateHelper.phoneCheck(phone)
-        error_phone= valid[0]
+        error_phone= !valid[0]
         error_message_phone = valid[1]
         
         this.setState({
@@ -113,7 +113,7 @@ class AddClient extends Component{
         let error_message_email = this.state.error_message.error_message_email
 
         const valid = ValidateHelper.nameCheck(name)
-        error_name = valid[0]
+        error_name = !valid[0]
         error_message_name = valid[1]
         this.setState({
             name,
@@ -140,15 +140,15 @@ class AddClient extends Component{
                 <form onSubmit={this.handleSubmit}>
                     <fieldset>
                         <legend>Add Client</legend>
-                        {this.state.error.error_name ===false? <ErrorMessage message={this.state.error_message.error_message_name} />:"" }
+                        {this.state.error.error_name? <ErrorMessage message={this.state.error_message.error_message_name} />:"" }
                         <label htmlFor="js_client_name" >Name</label>
                         <input required onChange={this.handleNameChange} value={this.state.name} id="js_client_name" name="js_client_name" type="text" />
                         <br/>
-                        {this.state.error.error_phone ===false? <ErrorMessage message={this.state.error_message.error_message_phone} />:"" }
+                        {this.state.error.error_phone? <ErrorMessage message={this.state.error_message.error_message_phone} />:"" }
                         <label htmlFor="js_client_phone" >Phone</label>
                         <input required type="text" onChange={this.handleNumberChange} name="js_client_phone" id="js_client_phone" value={this.state.phone} />
                         <br/>
-                        {this.state.error.error_email ===false? <ErrorMessage message={this.state.error_message.error_message_email} />:"" }
+                        {this.state.error.error_email? <ErrorMessage message={this.state.error_message.error_message_email} />:"" }
                         <label htmlFor="js_client_email" >Email</label>
                         <input required type="email" onChange={this.handleEmailChange} name="js_client_email" id="js_client_email" value={this.state.email} />
                         <br/>
