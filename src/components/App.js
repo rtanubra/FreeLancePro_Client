@@ -12,6 +12,7 @@ import ClientList from '../routes/clientList/clientList'
 import AddClient from '../routes/addClient/addClient'
 import AddService from '../routes/addService/addService'
 import EditClient from '../routes/editClient/editClient'
+import EditService from '../routes/editService/editService'
 
 //contexts
 import FlpContext from '../contexts/flpContext'
@@ -70,7 +71,16 @@ class App extends Component{
       services
     })
   }
+  editService = (service)=>{
+    const services = [...this.state.services]
+    services[service.id-1].notes =service.notes
+    services[service.id-1].cost =service.cost
+    services[service.id-1].people =service.people
+    this.setState({
+      services
+    })
 
+  }
 
   render(){
     const contextValue = {
@@ -81,6 +91,7 @@ class App extends Component{
     contextValue.deleteClient = this.deleteClient
     contextValue.deleteService = this.deleteService
     contextValue.editClient = this.editClient
+    contextValue.editService = this.editService
 
     return (
       <FlpContext.Provider value={contextValue}>
@@ -121,6 +132,11 @@ class App extends Component{
             exact 
             path={'/addService/:clientId'}
             component={AddService}
+            />
+          <Route
+            exact 
+            path={'/editService/:serviceId'}
+            component={EditService}
             />
         </Switch>   
       </div>

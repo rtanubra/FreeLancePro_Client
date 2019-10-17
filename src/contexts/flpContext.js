@@ -28,7 +28,8 @@ const FlpContext = React.createContext({
     addService:"",
     deleteClient:"",
     deleteService:"",
-    editClient:""
+    editClient:"",
+    editService:""
 })
 
 export default FlpContext

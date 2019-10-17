@@ -1,6 +1,7 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
 import {Redirect} from 'react-router-dom'
-import './addService.css'
+
+import './editService.css'
 
 //validation services and error boxes
 import ValidateHelper from '../../services/validator'
@@ -9,8 +10,25 @@ import ErrorMessage from '../../components/errorMessage/errorMessage'
 //context
 import FlpContext from '../../contexts/flpContext'
 
-class AddService extends Component{
+class EditService extends Component{
     static contextType= FlpContext
+    
+    componentDidMount(){
+        let {serviceId} = this.props.match.params
+        serviceId = parseInt(serviceId)
+        const service = this.context.services.find(service=>{
+            return service.id=== serviceId
+        })
+        const notes = service.notes
+        const people = service.people
+        const cost = service.cost
+        const promotion_used = service.promotion_used
+        this.setState({
+            notes,
+            people,
+            cost
+        })
+    }
     state = {
         notes:"Hair And Makeup",
         cost:360,
@@ -137,33 +155,29 @@ class AddService extends Component{
         if (this.state.error.error_cost||this.state.error.error_notes || this.state.error.error_people ){
             //do nothing there is an error
         }
-        else {
-            
+        else{ 
             const service = {
                 notes:this.state.notes,
                 cost:this.state.cost,
                 people:this.state.people,
-                client_id: parseInt(this.props.match.params.clientId)
+                id:parseInt(this.props.match.params.serviceId)
             }
-            this.context.addService(service)
+            this.context.editService(service)
             this.setState({
                 success:true
             })
         }
     }
-
-    
-
     render(){
         if (this.state.success){
             return <Redirect to="/client" />
         }
         return (<>
-        <h2 className="css_h2_header" >Add a New Service</h2>
+            <h2 className="css_h2_header" >Edit Service - {this.state.notes}</h2>
             <div className="css_body_middle" >
                 <form onSubmit={this.handleSubmit}>
                     <fieldset>
-                        <legend>Add Service</legend>
+                        <legend>Edit Service</legend>
                         {this.state.error.error_notes? <ErrorMessage message={this.state.error_message.error_message_notes} />:"" }
                         <label htmlFor="js_service_notes" >Service Notes</label>
                         <input required onChange={this.handleNotesChange} value={this.state.notes} id="js_service_notes" name="js_service_notes" type="text" />
@@ -187,4 +201,4 @@ class AddService extends Component{
         </>)
     }
 }
-export default AddService
+export default EditService

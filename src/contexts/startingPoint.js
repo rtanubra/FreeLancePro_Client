@@ -86,7 +86,8 @@ const StartingContext= {
     addService:"",
     deleteClient:"",
     deleteService:"",
-    editClient:""
+    editClient:"",
+    editService:""
 }
 
 export default StartingContext

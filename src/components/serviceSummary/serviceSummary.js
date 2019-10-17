@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import {Link} from 'react-router-dom'
 import './serviceSummary.css'
 
 import FlpContext from '../../contexts/flpContext'
@@ -27,7 +28,7 @@ class serviceSummary extends Component{
         
         {this.state.deleteOn?<tr><td colSpan={6}><DeleteServiceWarning serviceId={parseInt(this.props.id)} toggleDelete={this.toggleDelete} /></td></tr>: <></>}
         <tr> 
-            <td>{this.props.id} - <span><button><i className="fa fa-edit"></i></button></span></td>
+            <td>{this.props.id} - <span><Link to ={`/editService/${parseInt(this.props.id)}`}><button><i className="fa fa-edit"></i></button></Link></span></td>
             <td>{this.props.notes}</td>
             <td>{this.props.cost}</td>
             <td>{this.props.people}</td>
