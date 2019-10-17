@@ -25,9 +25,30 @@ class AddService extends Component{
             error_message_cost:"",
             error_message_people:""
         },
-        success:false
+        success:false,
+        promotion:false,
+        promoId:false
     }
-
+    componentDidMount(){
+        const client = this.context.clients.find(client=>{
+            return client.id === parseInt(this.props.match.params.clientId)
+        })
+        console.log(client)
+        let promo = ""
+        let promotion = false
+        let promoId = false
+        if (client.currentPromo){
+            promo  = this.context.promotions.find(promo=>{
+                return promo.id ===client.currentPromo
+            })
+            promotion = promo.name
+            promoId = promo.id 
+        }
+        this.setState({
+            promotion,
+            promoId
+        })
+    }
     handleNotesChange=(event)=>{
         const notes = event.target.value
 
@@ -145,6 +166,9 @@ class AddService extends Component{
                 people:this.state.people,
                 client_id: parseInt(this.props.match.params.clientId)
             }
+            if (this.state.promotion){
+                service.promotion_used =  this.state.promoId
+            }
             this.context.addService(service)
             this.setState({
                 success:true
@@ -161,6 +185,8 @@ class AddService extends Component{
         if (this.context.loggedIn===false){
             return <Redirect to={''} />
         }
+        
+
         return (<>
         <h2 className="css_h2_header" >Add a New Service</h2>
             <div className="css_body_middle" >
@@ -168,17 +194,22 @@ class AddService extends Component{
 
                         {this.state.error.error_notes? <ErrorMessage message={this.state.error_message.error_message_notes} />:"" }
                         <label htmlFor="js_service_notes" >Service Notes</label>
+                        <br/>
                         <input required onChange={this.handleNotesChange} value={this.state.notes} id="js_service_notes" name="js_service_notes" type="text" />
-
+                        <br/>
                         {this.state.error.error_cost? <ErrorMessage message={this.state.error_message.error_message_cost} />:"" }
                         <label htmlFor="js_service_cost" >Total Cost</label>
+                        <br/>
                         <input required onChange={this.handleCostChange} value={this.state.cost} id="js_service_cost" name="js_service_cost" type="number" min="-100000" max="100000" step="0.01" />
                         <br/>
 
                         {this.state.error.error_people? <ErrorMessage message={this.state.error_message.error_message_people} />:"" }
                         <label htmlFor="js_service_people" >Number of people serviced</label>
+                        <br/>
                         <input required onChange={this.handlePeopleChange} value={this.state.people} id="js_service_people" name="js_service_people" type="number" min="0" max="100" step="1" />
                         <br/>
+
+                        {this.state.promotion? <p>{`Client has an open promo! APPLY => ${this.state.promotion}`}</p>:""}
 
 
                         <button className="css_button css_add_service_success" type="submit"  >Submit Client</button>
