@@ -11,6 +11,7 @@ import Register from '../routes/register/register'
 import ClientList from '../routes/clientList/clientList'
 import AddClient from '../routes/addClient/addClient'
 import AddService from '../routes/addService/addService'
+import EditClient from '../routes/editClient/editClient'
 
 //contexts
 import FlpContext from '../contexts/flpContext'
@@ -32,6 +33,17 @@ class App extends Component{
     this.setState({
       clients
     })
+  }
+  editClient=(client)=>{
+    const clients = [...this.state.clients]
+    clients[client.id-1].name = client.name
+    clients[client.id-1].email = client.email
+    clients[client.id-1].phone = client.phone
+    console.log(client)
+    this.setState({
+      clients
+    })
+    
   }
   deleteClient = (clientId)=>{
     const clients = [...this.state.clients]
@@ -68,6 +80,7 @@ class App extends Component{
     contextValue.addService = this.addService
     contextValue.deleteClient = this.deleteClient
     contextValue.deleteService = this.deleteService
+    contextValue.editClient = this.editClient
 
     return (
       <FlpContext.Provider value={contextValue}>
@@ -98,6 +111,11 @@ class App extends Component{
             exact 
             path={'/addClient'}
             component={AddClient}
+            />
+          <Route
+            exact 
+            path={'/editClient/:clientId'}
+            component={EditClient}
             />
           <Route
             exact 
