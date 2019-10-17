@@ -28,14 +28,16 @@ class serviceSummary extends Component{
         
         {this.state.deleteOn?<tr><td colSpan={6}><DeleteServiceWarning serviceId={parseInt(this.props.id)} toggleDelete={this.toggleDelete} /></td></tr>: <></>}
         <tr> 
-            <td>{this.props.id} - <span><Link to ={`/editService/${parseInt(this.props.id)}`}><button><i className="fa fa-edit"></i></button></Link></span></td>
+            <td> 
+                <span><Link to ={`/editService/${parseInt(this.props.id)}`}><button><i className="fa fa-edit"></i></button></Link></span> - 
+                {this.props.id} -
+                <span><button onClick={this.toggleDelete}><i className="fa fa-trash" aria-hidden="true"></i></button></span>
+            </td>
             <td>{this.props.notes}</td>
             <td>{this.props.cost}</td>
-            <td>{this.props.people}</td>
-            <td>{promoName}</td>
-            <td>
-                <span><button onClick={this.toggleDelete}><i className="fa fa-trash" aria-hidden="true"></i></button></span>
-                </td>
+            <td className="css_small_hide" >{this.props.people}</td>
+            <td className="css_small_hide" >{promoName}</td>
+            
         </tr>
         </>
     )

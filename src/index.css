@@ -61,13 +61,37 @@ input[type=text], input[type=password],input[type=email] ,input[type=tel],input[
   padding: 14px 20px;
   background-color: #f44336;
 }
+
 table, th, td {
   border: 1px solid black;
   border-collapse: collapse;
 }
 th,td{
   padding: 15px;
+  max-width: 70px;
+  overflow-wrap:break-word;
 }
 th{
   text-align: left;
+}
+.css_small_hide{
+  visibility: hidden
+}
+
+@media only screen and (min-width: 560px) {
+  .css_small_hide{
+    visibility:visible;
+  }
+
+}
+@media only screen and (min-width: 660px) {
+  .css_small_hide{
+    visibility:visible;
+  }
+  th,td{
+    padding: 15px;
+    max-width: 120px;
+    overflow-wrap:break-word;
+  }
+
 }

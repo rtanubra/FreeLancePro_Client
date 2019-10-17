@@ -60,9 +60,8 @@ class ClientSummary extends Component{
                         <th>ID</th>
                         <th>Notes</th>
                         <th>Cost</th>
-                        <th># People</th>
-                        <th>Promo</th>
-                        <th>Del</th>
+                        <th className="css_small_hide" ># People</th>
+                        <th className="css_small_hide" >Promo</th>
                     </tr>
                     </thead>
                     <tbody>
