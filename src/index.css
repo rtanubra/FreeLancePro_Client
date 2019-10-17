@@ -61,3 +61,13 @@ input[type=text], input[type=password],input[type=email] ,input[type=tel],input[
   padding: 14px 20px;
   background-color: #f44336;
 }
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th,td{
+  padding: 15px;
+}
+th{
+  text-align: left;
+}
