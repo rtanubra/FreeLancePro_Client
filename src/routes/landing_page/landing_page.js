@@ -2,7 +2,10 @@ import React, {Component} from 'react'
 import './landing_page.css'
 import {Link} from 'react-router-dom'
 
+import FlpContext from '../../contexts/flpContext'
+
 class LandingPage extends Component{
+    static contextType =FlpContext
     render(){
         return(
             <div className="css_landing_page">
@@ -42,7 +45,7 @@ class LandingPage extends Component{
                     </p>
                     <hr></hr>
                     <p>Test User Login</p>
-                    <Link className="css_header_links" to={'/client'}><button className="css_button">Login</button></Link>
+                    <Link to={'/client'}><button onClick={()=>{this.context.logIn()}} className="css_button">Login</button></Link>
                 </div>
             </div>
         ) 

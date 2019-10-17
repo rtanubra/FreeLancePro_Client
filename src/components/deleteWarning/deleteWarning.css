@@ -1,5 +1,7 @@
 .css_special_delete{
     border:2px red dashed;
+    max-width:220px;
+    overflow-wrap:break-word;
 }
 .css_h4_delete{
     text-align: center;
@@ -15,4 +17,10 @@
     margin-right:5%;
     margin-bottom:20px;
     height:40px;
+}
+@media only screen and (min-width: 560px) {
+  .css_special_delete{
+      width:90%;
+      max-width:1000px;
+  }
 }

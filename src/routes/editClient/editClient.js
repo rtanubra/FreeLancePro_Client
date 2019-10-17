@@ -152,12 +152,14 @@ class EditClient extends Component{
         if (this.state.success){
             return <Redirect to={'/client'}/>
         }
+        if (this.context.loggedIn===false){
+            return <Redirect to={''} />
+        }
         return (<>
             <h2 className="css_h2_header" >Edit Client {this.state.name}</h2>
                 <div className="css_body_middle" >
                     <form onSubmit={this.handleSubmit}>
-                        <fieldset>
-                            <legend>Edit</legend>
+
                             {this.state.error.error_name? <ErrorMessage message={this.state.error_message.error_message_name} />:"" }
                             <label htmlFor="js_client_name" >Name</label>
                             <input required onChange={this.handleNameChange} value={this.state.name} id="js_client_name" name="js_client_name" type="text" />
@@ -171,7 +173,7 @@ class EditClient extends Component{
                             <input required type="email" onChange={this.handleEmailChange} name="js_client_email" id="js_client_email" value={this.state.email} />
                             <br/>
                             <button className="css_button css_add_client_success" type="submit"  >Submit Changes</button>
-                        </fieldset>
+
                     </form>
                 </div>
         </>)

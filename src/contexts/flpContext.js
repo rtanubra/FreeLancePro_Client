@@ -1,6 +1,7 @@
 import React from 'react'
 
 const FlpContext = React.createContext({
+    loggedIn:false,
     clients:[
         {
             id:1,
@@ -29,7 +30,9 @@ const FlpContext = React.createContext({
     deleteClient:"",
     deleteService:"",
     editClient:"",
-    editService:""
+    editService:"",
+    logOut:"",
+    logIn:""
 })
 
 export default FlpContext

@@ -1,15 +1,15 @@
 import React, {Component} from 'react'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 import './clientSummary.css'
 
 
-import flpContext from '../../contexts/flpContext'
+import FlpContext from '../../contexts/flpContext'
 import SericeSummary from '../serviceSummary/serviceSummary'
 
 import DeleteWarning from '../../components/deleteWarning/deleteWarning'
 
 class ClientSummary extends Component{
-    static contextType = flpContext
+    static contextType = FlpContext
     state = {
         deleteOn:false
     }
@@ -42,6 +42,9 @@ class ClientSummary extends Component{
                 return promotion.id ===this.props.promo
             })
             promoName = promo[0].name
+        }
+        if (this.context.loggedIn===false){
+            return <Redirect to={''} />
         }
 
         return (

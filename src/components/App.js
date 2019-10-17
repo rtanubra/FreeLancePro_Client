@@ -22,7 +22,15 @@ class App extends Component{
   state = {
         ...StartingContext
   }
-  
+  logIn = ()=>{
+    console.log("logging in")
+    const loggedIn = true
+    this.setState({loggedIn})
+  }
+  logOut = ()=>{
+    const loggedIn= false
+    this.setState({loggedIn})
+  }
   //context functions this could also be created directly in context for cleanliness
   addClient = (client)=>{
 
@@ -92,6 +100,8 @@ class App extends Component{
     contextValue.deleteService = this.deleteService
     contextValue.editClient = this.editClient
     contextValue.editService = this.editService
+    contextValue.logIn = this.logIn
+    contextValue.logOut = this.logOut
 
     return (
       <FlpContext.Provider value={contextValue}>

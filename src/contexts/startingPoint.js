@@ -1,4 +1,5 @@
 const StartingContext= {
+    loggedIn:false,
     clients:[
         {
             id:1,
@@ -87,7 +88,9 @@ const StartingContext= {
     deleteClient:"",
     deleteService:"",
     editClient:"",
-    editService:""
+    editService:"",
+    logOut:"",
+    logIn:""
 }
 
 export default StartingContext

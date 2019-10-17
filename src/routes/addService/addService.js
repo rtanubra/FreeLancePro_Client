@@ -158,12 +158,14 @@ class AddService extends Component{
         if (this.state.success){
             return <Redirect to="/client" />
         }
+        if (this.context.loggedIn===false){
+            return <Redirect to={''} />
+        }
         return (<>
         <h2 className="css_h2_header" >Add a New Service</h2>
             <div className="css_body_middle" >
                 <form onSubmit={this.handleSubmit}>
-                    <fieldset>
-                        <legend>Add Service</legend>
+
                         {this.state.error.error_notes? <ErrorMessage message={this.state.error_message.error_message_notes} />:"" }
                         <label htmlFor="js_service_notes" >Service Notes</label>
                         <input required onChange={this.handleNotesChange} value={this.state.notes} id="js_service_notes" name="js_service_notes" type="text" />
@@ -180,7 +182,7 @@ class AddService extends Component{
 
 
                         <button className="css_button css_add_service_success" type="submit"  >Submit Client</button>
-                    </fieldset>
+
                 </form>
             </div>
 
