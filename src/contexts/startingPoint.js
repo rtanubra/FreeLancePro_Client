@@ -1,5 +1,5 @@
 const StartingContext= {
-    loggedIn:true,
+    loggedIn:false,
     clients:[
         {
             id:1,
