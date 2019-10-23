@@ -18,9 +18,23 @@ import EditService from '../routes/editService/editService'
 import FlpContext from '../contexts/flpContext'
 import StartingContext from '../contexts/startingPoint'
 
+//config
+import config from '../config'
+
 class App extends Component{
+  
   state = {
         ...StartingContext
+  }
+  componentDidMount(){
+    this.fetchClients()
+  }
+  fetchClients=()=>{
+    const url = `${config.API_ENDPOINT}/api/clients/`
+    console.log(url)
+    fetch(url).then(res=>res.json()).then(jsonRes=>{
+      this.setState({clients:[...jsonRes]})
+    })
   }
   logIn = ()=>{
     console.log("logging in")

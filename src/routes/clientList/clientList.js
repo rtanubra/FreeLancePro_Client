@@ -21,17 +21,17 @@ class ClientList extends Component{
         console.log(this.state.searchTerm)
     }
     render(){
-        const clientListNonDelete = this.context.clients.filter(client=>{
-            return client.deleted=== false
+        const clientListForUser = this.context.clients.filter(client=>{
+            return client.user_id=== 1
         })
         
         let clientListTables ,clientListFilterd
         if (this.state.searchTerm){
-            clientListFilterd = clientListNonDelete.filter(client=>{
+            clientListFilterd = clientListForUser.filter(client=>{
                 return client.name.toLowerCase().includes(this.state.searchTerm.toLowerCase())
             }) 
         } else {
-            clientListFilterd = [...clientListNonDelete]
+            clientListFilterd = [...clientListForUser]
         }
         clientListTables = clientListFilterd.map(client=>{
             return <ClientSummary 
@@ -51,7 +51,7 @@ class ClientList extends Component{
                 <label className="css_searchLabel" htmlFor="js_searchTerm" >Filter Clients By Name</label>         
                 <input className="css_searchInput" onChange={this.handleSearchChange} value={this.state.searchTerm} id="js_searchTerm" name="js_searchTerm" type="text" />
             </form>
-            {this.state.searchTerm ? <FilterList visible ={clientListFilterd.length} total={clientListNonDelete.length} /> :""}
+            {this.state.searchTerm ? <FilterList visible ={clientListFilterd.length} total={clientListForUser.length} /> :""}
             <div className="css_body_middle" >
                 {clientListTables}
             </div>
