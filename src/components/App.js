@@ -61,18 +61,7 @@ class App extends Component{
     const loggedIn= false
     this.setState({loggedIn})
   }
-  //context functions this could also be created directly in context for cleanliness
-  addClient = (client)=>{
 
-    const newId = this.state.clients[this.state.clients.length-1].id+1
-    client.id=newId
-    client.deleted=false
-    const clients = [...this.state.clients]
-    clients[newId-1]={...client}
-    this.setState({
-      clients
-    })
-  }
   editClient=(client)=>{
     const clients = [...this.state.clients]
     clients[client.id-1].name = client.name
@@ -85,17 +74,19 @@ class App extends Component{
     
   }
   deleteClient = (clientId)=>{
-    const clients = [...this.state.clients]
-    clients[clientId-1].deleted = true
-    this.setState({
-      clients
+    const url = `${config.API_ENDPOINT}/api/clients/${clientId}`
+    fetch(url,{
+      method:`DELETE`
+    }).then(res=>{
+      this.fetchClients()
     })
   }
   deleteService = (serviceId)=>{
-    const services = [...this.state.services]
-    services[serviceId-1].deleted=true
-    this.setState({
-      services
+    const url = `${config.API_ENDPOINT}/api/services/${serviceId}`
+    fetch(url,{
+      method:`DELETE`
+    }).then(res=>{
+      this.fetchServices()
     })
   }
   
@@ -114,9 +105,9 @@ class App extends Component{
     const contextValue = {
             ...this.state
     }
+    contextValue.fetchPromos=this.fetchPromos
     contextValue.fetchClients = this.fetchClients
     contextValue.fetchServices = this.fetchServices
-    contextValue.addClient = this.addClient
     contextValue.deleteClient = this.deleteClient
     contextValue.deleteService = this.deleteService
     contextValue.editClient = this.editClient
