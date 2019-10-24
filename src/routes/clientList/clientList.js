@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import './clientList.css'
-import {Link} from 'react-router-dom'
+import {Link,Redirect} from 'react-router-dom'
 
 //context
 import FlpContext from '../../contexts/flpContext'
@@ -43,7 +43,9 @@ class ClientList extends Component{
                 promo= {client.open_promo}
                 key={`${client.id}_client`} />
         })
-        
+        if (!this.context.loggedIn){
+            return <Redirect to={'/'}/>
+        }
         return (
             <>
             <h2 className="css_h2_header">Welcome Back Finese</h2>

@@ -9,6 +9,8 @@ import ErrorMessage from '../../components/errorMessage/errorMessage'
 
 import FlpContext from '../../contexts/flpContext'
 
+import config from '../../config'
+
 class EditClient extends Component{
     static contextType= FlpContext
     componentDidMount(){
@@ -32,27 +34,41 @@ class EditClient extends Component{
         event.preventDefault()
         if (this.state.error.error_email || this.state.error.error_name || this.state.error.error_phone ){
             //do nothing have errors
-            console.log('here-errors')
-            console.log(this.state.error.error_email, this.state.error.error_name, this.state.error.error_phone)
         }
         else {
-            console.log('here')
             const client = {
                 name:this.state.name,
                 phone:this.state.phone,
                 email:this.state.email,
                 id: parseInt(this.props.match.params.clientId)
             }
-            this.context.editClient(client)
-            this.setState({
-            success:true
-        })
+            const url = `${config.API_ENDPOINT}/api/clients/${client.id}`
+            fetch(url,{
+                method:'PATCH',
+                headers:{'content-type':'application/json'},
+                body:JSON.stringify(client)
+            }).then(res=>res.json()).then(jsonRes=>{
+                if (jsonRes.error){
+                    this.setState({
+                        mainError:true,
+                        mainError_message:jsonRes.error
+                    })
+                }
+                else{
+                    this.context.fetchClients()
+                    this.setState({
+                        success:true
+                    })
+                }
+            })
         }
         
         
     }
     handleEmailChange= (event)=>{
         const email = event.target.value
+        const mainError = false
+        const mainError_message = ""
         let error_name=  this.state.error.error_name
         let error_phone = this.state.error.error_phone
         let error_email = false
@@ -65,6 +81,8 @@ class EditClient extends Component{
         error_email = !valid[0]
         error_message_email = valid[1]
         this.setState({
+            mainError,
+            mainError_message,
             email,
             error:{
                 error_name:error_name,
@@ -80,6 +98,8 @@ class EditClient extends Component{
     }
     handleNumberChange= (event)=>{
         const phone = event.target.value
+        const mainError = false
+        const mainError_message = ""
         let error_name=  this.state.error.error_name
         let error_phone = false
         let error_email = this.state.error.error_email
@@ -93,6 +113,8 @@ class EditClient extends Component{
         error_message_phone = valid[1]
         
         this.setState({
+            mainError,
+            mainError_message,
             phone,
             error:{
                 error_name:error_name,
@@ -108,6 +130,8 @@ class EditClient extends Component{
     }
     handleNameChange = (event)=>{
         const name= event.target.value;
+        const mainError = false
+        const mainError_message = ""
         let error_name= false
         let error_phone = this.state.error.phone
         let error_email = this.state.error.email
@@ -119,6 +143,8 @@ class EditClient extends Component{
         error_name = !valid[0]
         error_message_name = valid[1]
         this.setState({
+            mainError,
+            mainError_message,
             name,
             error:{
                 error_name:error_name,
@@ -133,6 +159,8 @@ class EditClient extends Component{
         })
     }
     state = {
+        mainError:false,
+        mainError_message:"",
         name:"Example Name",
         phone:"905-323-5555",
         email:"myFakeEmail@gmail.com",
@@ -159,8 +187,8 @@ class EditClient extends Component{
             <h2 className="css_h2_header" >Edit Client {this.state.name}</h2>
                 <div className="css_body_middle" >
                     <form onSubmit={this.handleSubmit}>
-
                             {this.state.error.error_name? <ErrorMessage message={this.state.error_message.error_message_name} />:"" }
+                            {this.state.mainError ? <ErrorMessage message={this.state.mainError_message} />:"" }
                             <label htmlFor="js_client_name" >Name</label>
                             <input required onChange={this.handleNameChange} value={this.state.name} id="js_client_name" name="js_client_name" type="text" />
                             <br/>

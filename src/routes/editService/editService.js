@@ -9,6 +9,7 @@ import ErrorMessage from '../../components/errorMessage/errorMessage'
 
 //context
 import FlpContext from '../../contexts/flpContext'
+import config from '../../config'
 
 class EditService extends Component{
     static contextType= FlpContext
@@ -31,6 +32,8 @@ class EditService extends Component{
     }
     state = {
         notes:"Hair And Makeup",
+        mainError:false,
+        mainError_message:"",
         cost:360,
         people:3,
         error:{
@@ -48,7 +51,8 @@ class EditService extends Component{
 
     handleNotesChange=(event)=>{
         const notes = event.target.value
-
+        const mainError = false
+        const mainError_message = ""
         let error_notes = false
         let error_cost = this.state.error.error_cost
         let error_people = this.state.error.error_people
@@ -67,6 +71,8 @@ class EditService extends Component{
         }
 
         this.setState({
+            mainError,
+            mainError_message,
             notes,
             error:{
                 error_notes,
@@ -82,7 +88,8 @@ class EditService extends Component{
     }
     handlePeopleChange = (event)=>{
         let people = event.target.value
-
+        const mainError = false
+        const mainError_message = ""
         let error_notes = this.state.error.error_notes
         let error_cost = this.state.error.error_cost
         let error_people = false
@@ -102,6 +109,8 @@ class EditService extends Component{
             error_message_people="Service requires number of people"
         }
         this.setState({
+            mainError,
+            mainError_message,
             people,
             error:{
                 error_notes,
@@ -117,7 +126,8 @@ class EditService extends Component{
     }
     handleCostChange=(event)=>{
         let cost = event.target.value
-        
+        const mainError = false
+        const mainError_message = ""
         let error_notes = this.state.error.error_notes
         let error_cost = false
         let error_people = this.state.error.error_people
@@ -137,6 +147,8 @@ class EditService extends Component{
             error_message_cost = "Cost is required for each service"
         }
         this.setState({
+            mainError,
+            mainError_message,
             cost,
             error:{
                 error_notes,
@@ -162,10 +174,26 @@ class EditService extends Component{
                 people:this.state.people,
                 id:parseInt(this.props.match.params.serviceId)
             }
-            this.context.editService(service)
-            this.setState({
-                success:true
+            const url = `${config.API_ENDPOINT}/api/services/${service.id}`
+            fetch(url,{
+                method:'PATCH',
+                headers:{'content-type':'application/json'},
+                body:JSON.stringify(service)
+            }).then(res=>res.json()).then(jsonRes=>{
+                if (jsonRes.error){
+                    this.setState({
+                        mainError:true,
+                        mainError_message:jsonRes.error
+                    })
+                }
+                else{
+                    this.context.fetchServices()
+                    this.setState({
+                        success:true
+                    })
+                }
             })
+
         }
     }
     render(){

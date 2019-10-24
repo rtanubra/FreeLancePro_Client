@@ -1,12 +1,15 @@
 import React, {Component} from 'react'
 import './landing_page.css'
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 
 import FlpContext from '../../contexts/flpContext'
 
 class LandingPage extends Component{
     static contextType =FlpContext
     render(){
+        if (this.context.loggedIn){
+            return <Redirect to={"/client"} />
+        }
         return(
             <div className="css_landing_page">
                 <div className="css_body_middle">

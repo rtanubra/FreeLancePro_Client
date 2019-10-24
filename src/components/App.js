@@ -62,17 +62,7 @@ class App extends Component{
     this.setState({loggedIn})
   }
 
-  editClient=(client)=>{
-    const clients = [...this.state.clients]
-    clients[client.id-1].name = client.name
-    clients[client.id-1].email = client.email
-    clients[client.id-1].phone = client.phone
-    console.log(client)
-    this.setState({
-      clients
-    })
-    
-  }
+
   deleteClient = (clientId)=>{
     const url = `${config.API_ENDPOINT}/api/clients/${clientId}`
     fetch(url,{
@@ -91,6 +81,7 @@ class App extends Component{
   }
   
   editService = (service)=>{
+
     const services = [...this.state.services]
     services[service.id-1].notes =service.notes
     services[service.id-1].cost =service.cost
@@ -110,7 +101,6 @@ class App extends Component{
     contextValue.fetchServices = this.fetchServices
     contextValue.deleteClient = this.deleteClient
     contextValue.deleteService = this.deleteService
-    contextValue.editClient = this.editClient
     contextValue.editService = this.editService
     contextValue.logIn = this.logIn
     contextValue.logOut = this.logOut
