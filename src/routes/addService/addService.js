@@ -17,9 +17,9 @@ class AddService extends Component{
     state = {
         mainError:false,
         mainError_message:"",
-        notes:"Hair And Makeup",
-        cost:360,
-        people:3,
+        notes:"",
+        cost:"",
+        people:"",
         error:{
             error_notes:"",
             error_cost:"",
@@ -226,24 +226,24 @@ class AddService extends Component{
                         {this.state.mainError ? <ErrorMessage message={this.state.mainError_message} />:"" }
                         <label htmlFor="js_service_notes" >Service Notes</label>
                         <br/>
-                        <input required onChange={this.handleNotesChange} value={this.state.notes} id="js_service_notes" name="js_service_notes" type="text" />
+                        <input required onChange={this.handleNotesChange} placeholder="hair/makeup" value={this.state.notes} id="js_service_notes" name="js_service_notes" type="text" />
                         <br/>
                         {this.state.error.error_cost? <ErrorMessage message={this.state.error_message.error_message_cost} />:"" }
                         <label htmlFor="js_service_cost" >Total Cost</label>
                         <br/>
-                        <input required onChange={this.handleCostChange} value={this.state.cost} id="js_service_cost" name="js_service_cost" type="number" min="-100000" max="100000" step="0.01" />
+                        <input required onChange={this.handleCostChange} placeholder="350" value={this.state.cost} id="js_service_cost" name="js_service_cost" type="number" min="-100000" max="100000" step="0.01" />
                         <br/>
 
                         {this.state.error.error_people? <ErrorMessage message={this.state.error_message.error_message_people} />:"" }
                         <label htmlFor="js_service_people" >Number of people serviced</label>
                         <br/>
-                        <input required onChange={this.handlePeopleChange} value={this.state.people} id="js_service_people" name="js_service_people" type="number" min="0" max="100" step="1" />
+                        <input required onChange={this.handlePeopleChange} placeholder="2" value={this.state.people} id="js_service_people" name="js_service_people" type="number" min="0" max="100" step="1" />
                         <br/>
 
                         {this.state.promotion? <p>{`Client has an open promo! APPLY => ${this.state.promotion}`}</p>:""}
 
 
-                        <button className="css_button css_add_service_success" type="submit"  >Submit Client</button>
+                        <button className="css_button css_add_service_success" type="submit"  >Submit Service</button>
 
                 </form>
             </div>

@@ -1,7 +1,7 @@
 .css_searchForm{
     margin-left:auto;
     margin-right:auto;
-    width:60%;
+    width:100%;
     border:0px;
 }
 .css_searchInput{
@@ -10,7 +10,7 @@
     height:25px;
     font-size:20px;
     display:inline-block;
-    width:80%;
+    width:100%;
 
 }
 .css_searchLabel{

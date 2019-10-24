@@ -30,8 +30,8 @@ class LandingPage extends Component{
 
                         <ul>
                             <li>Track Your client services</li>
-                            <li>Setup and send client specific promotions</li>
-                            <li>Setup and send promotions to all your client base</li>
+                            <li>Create and manage clients</li>
+                            <li>Create and manage services</li>
                         </ul>
 
                 </div>

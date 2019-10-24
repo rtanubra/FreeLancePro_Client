@@ -24,7 +24,7 @@ code {
     margin-right:auto;
     margin-top:30px;
     margin-bottom:30px;
-    border:1px solid black;
+    
     padding:20px;
     padding-bottom:40px;
     width:80%;
@@ -56,6 +56,23 @@ input[type=text], input[type=password],input[type=email] ,input[type=tel],input[
   opacity: 0.9;
   margin-top:20px;
   margin-bottom:20px;
+}
+#css_addClient{
+  width:60%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  border: none;
+  cursor: pointer;
+  cursor: pointer;
+  border-radius:10px;
+  opacity: 0.9;
+  margin-top:20px;
+  margin-bottom:40px;
+  margin-left:20%;
+  margin-right:20%;
+  font-size:20px;
+  
 }
 .css_cancel_button {
   padding: 14px 20px;

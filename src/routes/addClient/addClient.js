@@ -18,9 +18,9 @@ class AddClient extends Component{
     state = {
         mainError:false,
         mainError_message:"",
-        name:"Example Name",
-        phone:"905-323-5555",
-        email:"myFakeEmail@gmail.com",
+        name:"",
+        phone:"",
+        email:"",
         error:{
             error_name:"",
             error_phone:"",
@@ -178,15 +178,15 @@ class AddClient extends Component{
                         {this.state.error.error_name? <ErrorMessage message={this.state.error_message.error_message_name} />:"" }
                         {this.state.mainError ? <ErrorMessage message={this.state.mainError_message} />:"" }
                         <label htmlFor="js_client_name" >Name</label>
-                        <input required onChange={this.handleNameChange} value={this.state.name} id="js_client_name" name="js_client_name" type="text" />
+                        <input required onChange={this.handleNameChange} placeholder="first last" value={this.state.name} id="js_client_name" name="js_client_name" type="text" />
                         <br/>
                         {this.state.error.error_phone? <ErrorMessage message={this.state.error_message.error_message_phone} />:"" }
                         <label htmlFor="js_client_phone" >Phone</label>
-                        <input required type="text" onChange={this.handleNumberChange} name="js_client_phone" id="js_client_phone" value={this.state.phone} />
+                        <input required type="text" onChange={this.handleNumberChange} placeholder="111-222-3333" name="js_client_phone" id="js_client_phone" value={this.state.phone} />
                         <br/>
                         {this.state.error.error_email? <ErrorMessage message={this.state.error_message.error_message_email} />:"" }
                         <label htmlFor="js_client_email" >Email</label>
-                        <input required type="email" onChange={this.handleEmailChange} name="js_client_email" id="js_client_email" value={this.state.email} />
+                        <input required type="email" onChange={this.handleEmailChange} placeholder="clientEmail@gmail.com" name="js_client_email" id="js_client_email" value={this.state.email} />
                         <br/>
                         <button className="css_button css_add_client_success" type="submit"  >Submit Client</button>
 

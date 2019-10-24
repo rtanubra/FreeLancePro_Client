@@ -49,11 +49,13 @@ class ClientList extends Component{
         return (
             <>
             <h2 className="css_h2_header">Welcome Back Finese</h2>
-            <Link to={'/addClient'} ><button className="css_button" >Add New Client</button></Link>
-            <form className="css_searchForm" onSubmit={this.handleSubmit}> 
-                <label className="css_searchLabel" htmlFor="js_searchTerm" >Filter Clients By Name</label>         
-                <input className="css_searchInput" onChange={this.handleSearchChange} value={this.state.searchTerm} id="js_searchTerm" name="js_searchTerm" type="text" />
-            </form>
+            <div className="css_body_middle" >
+            <Link to={'/addClient'} ><button id="css_addClient" className="css_addClient" >Add New Client</button></Link>
+                <form className="css_searchForm" onSubmit={this.handleSubmit}> 
+                    <label className="css_searchLabel" htmlFor="js_searchTerm" >Filter Clients By Name</label>         
+                    <input className="css_searchInput" onChange={this.handleSearchChange} value={this.state.searchTerm} id="js_searchTerm" name="js_searchTerm" type="text" />
+                </form>
+            </div>
             {this.state.searchTerm ? <FilterList visible ={clientListFilterd.length} total={clientListForUser.length} /> :""}
             <div className="css_body_middle" >
                 {clientListTables}
