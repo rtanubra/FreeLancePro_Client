@@ -9,7 +9,7 @@ import ErrorMessage from '../../components/errorMessage/errorMessage'
 //context
 import FlpContext from '../../contexts/flpContext'
 
-//
+//config
 import config from '../../config'
 
 class AddService extends Component{
@@ -223,6 +223,7 @@ class AddService extends Component{
                 <form onSubmit={this.handleSubmit}>
 
                         {this.state.error.error_notes? <ErrorMessage message={this.state.error_message.error_message_notes} />:"" }
+                        {this.state.mainError ? <ErrorMessage message={this.state.mainError_message} />:"" }
                         <label htmlFor="js_service_notes" >Service Notes</label>
                         <br/>
                         <input required onChange={this.handleNotesChange} value={this.state.notes} id="js_service_notes" name="js_service_notes" type="text" />
