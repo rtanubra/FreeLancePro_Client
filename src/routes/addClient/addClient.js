@@ -45,7 +45,7 @@ class AddClient extends Component{
                 email:this.state.email,
                 user_id:1
             }
-            const url = `${config.API_ENDPOINT}/api/clients`
+            const url = `${config.API_ENDPOINT}/api/clients/`
             fetch(url,{
                 method:"POST",
                 headers:{'content-type':'application/json'},
@@ -165,7 +165,7 @@ class AddClient extends Component{
 
     render(){
         if (this.state.success){
-            return <Redirect to={'/client'}/>
+            return <Redirect to={'/client/'}/>
         }
         if (this.context.loggedIn===false){
             return <Redirect to={''} />
