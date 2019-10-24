@@ -21,6 +21,7 @@ class ClientList extends Component{
         console.log(this.state.searchTerm)
     }
     render(){
+
         const clientListForUser = this.context.clients.filter(client=>{
             return client.user_id=== 1
         })
@@ -39,7 +40,7 @@ class ClientList extends Component{
                 name={client.name} 
                 phone={client.phone} 
                 email={client.email}
-                promo= {client.currentPromo}
+                promo= {client.open_promo}
                 key={`${client.id}_client`} />
         })
         

@@ -18,10 +18,8 @@ class ClientSummary extends Component{
         this.setState({deleteOn})
     }
     render(){
-        let servicesNotDeleted = this.context.services.filter(service=>{
-            return service.deleted===false
-        })
-        let clientServices = servicesNotDeleted.filter(service=>{
+
+        let clientServices = this.context.services.filter(service=>{
             return service.client_id == this.props.id
         })
 
@@ -30,7 +28,7 @@ class ClientSummary extends Component{
                 id={service.id}
                 notes ={service.notes}
                 people = {service.people}
-                promotion_used = {service.promotion_used}
+                promotion_used = {service.promo_id}
                 cost = {service.cost}
                 key={`${service.id}_service`}
             />
@@ -53,9 +51,9 @@ class ClientSummary extends Component{
                 <br></br>
                 {this.state.deleteOn? <DeleteWarning handleClientDelete={this.handleClientDelete} clientId={parseInt(this.props.id)} />:""}
                 <Link to={`/addService/${this.props.id}`} ><button className="css_button">Add Service</button></Link>
-                <p>Email:{this.props.email}</p>
-                <p>Phone:{this.props.phone}</p>
-                <p>Open Promotions:{promoName}</p>
+                <p>Email : {this.props.email}</p>
+                <p>Phone : {this.props.phone}</p>
+                <p>Open Promotion : {promoName}</p>
                 
                 <table>
                     <thead>

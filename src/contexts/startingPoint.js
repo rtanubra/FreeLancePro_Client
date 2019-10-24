@@ -6,7 +6,7 @@ const StartingContext= {
             name:"Mundy Moon",
             email:"MundyMoon@gmail.com",
             phone:"555-9334-1234",
-            currentPromo:1,
+            open_promo:1,
             lastService:1,
             deleted:false
         },{
@@ -21,7 +21,7 @@ const StartingContext= {
             name:"Symbolic Cindy",
             email:"Symbolic Cindy@gmail.com",
             phone:"555-9334-1134",
-            currentPromo:3,
+            open_promo:3,
             lastService:3,
             deleted:false
         }
@@ -52,7 +52,7 @@ const StartingContext= {
             notes:"Hair and Makeup",
             cost:600,
             people:3,
-            promotion_used:1,
+            promo_id:1,
             client_id:1,
             deleted:false
         },
@@ -69,7 +69,7 @@ const StartingContext= {
             notes:"Hair and Makeup Wedding",
             cost:1450,
             people:6,
-            promotion_used:3,
+            promo_id:3,
             client_id:3,
             deleted:false
         },
@@ -78,7 +78,7 @@ const StartingContext= {
             notes:"Hair and Makeup Wedding",
             cost:1650,
             people:7,
-            promotion_used:3,
+            promo_id:3,
             client_id:3,
             deleted:false
         },

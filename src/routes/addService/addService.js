@@ -9,9 +9,14 @@ import ErrorMessage from '../../components/errorMessage/errorMessage'
 //context
 import FlpContext from '../../contexts/flpContext'
 
+//
+import config from '../../config'
+
 class AddService extends Component{
     static contextType= FlpContext
     state = {
+        mainError:false,
+        mainError_message:"",
         notes:"Hair And Makeup",
         cost:360,
         people:3,
@@ -33,13 +38,12 @@ class AddService extends Component{
         const client = this.context.clients.find(client=>{
             return client.id === parseInt(this.props.match.params.clientId)
         })
-        console.log(client)
         let promo = ""
         let promotion = false
         let promoId = false
-        if (client.currentPromo){
+        if (client.open_promo){
             promo  = this.context.promotions.find(promo=>{
-                return promo.id ===client.currentPromo
+                return promo.id ===client.open_promo
             })
             promotion = promo.name
             promoId = promo.id 
@@ -51,7 +55,8 @@ class AddService extends Component{
     }
     handleNotesChange=(event)=>{
         const notes = event.target.value
-
+        const mainError = false
+        const mainError_message = ""
         let error_notes = false
         let error_cost = this.state.error.error_cost
         let error_people = this.state.error.error_people
@@ -70,6 +75,8 @@ class AddService extends Component{
         }
 
         this.setState({
+            mainError,
+            mainError_message,
             notes,
             error:{
                 error_notes,
@@ -85,7 +92,8 @@ class AddService extends Component{
     }
     handlePeopleChange = (event)=>{
         let people = event.target.value
-
+        const mainError = false
+        const mainError_message = ""
         let error_notes = this.state.error.error_notes
         let error_cost = this.state.error.error_cost
         let error_people = false
@@ -105,6 +113,8 @@ class AddService extends Component{
             error_message_people="Service requires number of people"
         }
         this.setState({
+            mainError,
+            mainError_message,
             people,
             error:{
                 error_notes,
@@ -120,7 +130,8 @@ class AddService extends Component{
     }
     handleCostChange=(event)=>{
         let cost = event.target.value
-        
+        const mainError = false
+        const mainError_message = ""
         let error_notes = this.state.error.error_notes
         let error_cost = false
         let error_people = this.state.error.error_people
@@ -140,6 +151,8 @@ class AddService extends Component{
             error_message_cost = "Cost is required for each service"
         }
         this.setState({
+            mainError,
+            mainError_message,
             cost,
             error:{
                 error_notes,
@@ -159,7 +172,6 @@ class AddService extends Component{
             //do nothing there is an error
         }
         else {
-            
             const service = {
                 notes:this.state.notes,
                 cost:this.state.cost,
@@ -167,12 +179,30 @@ class AddService extends Component{
                 client_id: parseInt(this.props.match.params.clientId)
             }
             if (this.state.promotion){
-                service.promotion_used =  this.state.promoId
+                service.promo_id =  this.state.promoId
             }
-            this.context.addService(service)
-            this.setState({
-                success:true
+            // run add here.
+            const url = `${config.API_ENDPOINT}/api/services/`
+            fetch(url,{
+                method:"POST",
+                headers:{'content-type':'application/json'},
+                body:JSON.stringify(service)
+            }).then(res=>res.json()).then(jsonRes=>{
+                if (jsonRes.error){
+                    this.setState({
+                        mainError : true,
+                        mainError_message : jsonRes.error
+                    })
+                }
+                else{
+                    this.context.fetchServices()
+                    this.setState({
+                        success:true
+                    })
+                }
             })
+
+
         }
     }
 

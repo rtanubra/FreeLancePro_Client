@@ -28,14 +28,30 @@ class App extends Component{
   }
   componentDidMount(){
     this.fetchClients()
+    this.fetchServices()
+    this.fetchPromos()
   }
+  fetchPromos=()=>{
+    const url = `${config.API_ENDPOINT}/api/promos/`
+    fetch(url).then(res=>res.json()).then(jsonRes=>{
+      this.setState({promotions:[...jsonRes]})
+    })
+  }
+  fetchServices=()=>{
+    const url = `${config.API_ENDPOINT}/api/services/`
+    fetch(url).then(res=>res.json()).then(jsonRes=>{
+      this.setState({services:[...jsonRes]})
+    })
+  }
+  //No longer USED
+
   fetchClients=()=>{
     const url = `${config.API_ENDPOINT}/api/clients/`
-    console.log(url)
     fetch(url).then(res=>res.json()).then(jsonRes=>{
       this.setState({clients:[...jsonRes]})
     })
   }
+  
   logIn = ()=>{
     console.log("logging in")
     const loggedIn = true
@@ -82,17 +98,7 @@ class App extends Component{
       services
     })
   }
-  addService = (service)=>{
-    const newId = this.state.services[this.state.services.length-1].id+1
-    service.id=newId
-    service.deleted=false
-    const services = [...this.state.services]
-    services[newId-1] = {...service}
-    console.log(services)
-    this.setState({
-      services
-    })
-  }
+  
   editService = (service)=>{
     const services = [...this.state.services]
     services[service.id-1].notes =service.notes
@@ -108,8 +114,9 @@ class App extends Component{
     const contextValue = {
             ...this.state
     }
+    contextValue.fetchClients = this.fetchClients
+    contextValue.fetchServices = this.fetchServices
     contextValue.addClient = this.addClient
-    contextValue.addService = this.addService
     contextValue.deleteClient = this.deleteClient
     contextValue.deleteService = this.deleteService
     contextValue.editClient = this.editClient
