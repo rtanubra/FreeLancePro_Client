@@ -21,15 +21,61 @@ import StartingContext from '../contexts/startingPoint'
 //config
 import config from '../config'
 
+//services
+import AuthService from '../services/authServices'
+
 class App extends Component{
   
   state = {
         ...StartingContext
   }
+  fetchCheckToken=(token)=>{
+    //check if the current token is good.
+    const url = `${config.API_ENDPOINT}/api/login/tokenCheck`
+    const auth = {token}
+    return fetch(url,{
+      method:"POST",
+      headers:{'content-type':'application/json'},
+      body:JSON.stringify(auth)
+    }).then(res=> {return res.json()})
+  }
   componentDidMount(){
-    this.fetchClients()
-    this.fetchServices()
-    this.fetchPromos()
+    const token = window.localStorage.getItem('FLPauthToken')
+    if(token){
+      this.fetchCheckToken(token).then(res=>{
+        if(res.error){
+          //fail
+          console.log(`Logging out`)
+          this.logOut()
+        }
+        else {
+          //success
+          this.fetchPromos()
+          this.fetchServices()
+          this.fetchClients()
+        }
+      })
+    }
+    
+  }
+  fetchLoginTest=()=>{
+    const url = `${config.API_ENDPOINT}/api/login`
+    const email = "cmR0YW51YnJhdGFAZ21haWwuY29t"
+    const password = "dGVzdDE"
+    const auth = {email,password}
+    fetch(url,{
+                method:"POST",
+                headers:{'content-type':'application/json'},
+                body:JSON.stringify(auth)
+              }).then(res=>res.json()).then(jsonRes=>{
+      if (jsonRes.error){
+        console.log(jsonRes.error)
+      }
+      else{
+        //console.log(jsonRes.authToken)
+        this.logIn(jsonRes.authToken,jsonRes.payload)
+      }
+    })
   }
   fetchPromos=()=>{
     const url = `${config.API_ENDPOINT}/api/promos/`
@@ -65,13 +111,14 @@ class App extends Component{
     })
   }
   
-  logIn = ()=>{
-    console.log("logging in")
+  logIn = (token,payload)=>{
     const loggedIn = true
+    AuthService.saveToken(token,payload)
     this.setState({loggedIn})
   }
   logOut = ()=>{
     const loggedIn= false
+    AuthService.deleteToken()
     this.setState({loggedIn})
   }
 
@@ -109,6 +156,7 @@ class App extends Component{
     const contextValue = {
             ...this.state
     }
+    contextValue.fetchLoginTest = this.fetchLoginTest
     contextValue.fetchPromos=this.fetchPromos
     contextValue.fetchClients = this.fetchClients
     contextValue.fetchServices = this.fetchServices

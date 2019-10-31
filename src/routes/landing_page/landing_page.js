@@ -48,7 +48,7 @@ class LandingPage extends Component{
                     </p>
                     <hr></hr>
                     <p>Test User Login</p>
-                    <Link to={'/client'}><button onClick={()=>{this.context.logIn()}} className="css_button">Login</button></Link>
+                    <Link to={'/client'}><button onClick={()=>{this.context.fetchLoginTest()}} className="css_button">Login</button></Link>
                 </div>
             </div>
         ) 
