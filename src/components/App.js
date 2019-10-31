@@ -34,13 +34,21 @@ class App extends Component{
   fetchPromos=()=>{
     const url = `${config.API_ENDPOINT}/api/promos/`
     fetch(url).then(res=>res.json()).then(jsonRes=>{
-      this.setState({promotions:[...jsonRes]})
+      if (jsonRes.error){
+        console.log(jsonRes.error)
+      } else {
+        this.setState({promotions:[...jsonRes]})
+      }
     })
   }
   fetchServices=()=>{
     const url = `${config.API_ENDPOINT}/api/services/`
     fetch(url).then(res=>res.json()).then(jsonRes=>{
-      this.setState({services:[...jsonRes]})
+      if (jsonRes.error){
+        console.log(jsonRes.error)
+      } else {
+        this.setState({services:[...jsonRes]})
+      }
     })
   }
   //No longer USED
@@ -48,7 +56,12 @@ class App extends Component{
   fetchClients=()=>{
     const url = `${config.API_ENDPOINT}/api/clients/`
     fetch(url).then(res=>res.json()).then(jsonRes=>{
-      this.setState({clients:[...jsonRes]})
+      if (jsonRes.error){
+        console.log(jsonRes.error)
+      } else {
+        this.setState({clients:[...jsonRes]})
+      }
+      
     })
   }
   

@@ -4,7 +4,7 @@ import {Redirect} from 'react-router-dom'
 import './editService.css'
 
 //validation services and error boxes
-import ValidateHelper from '../../services/validator'
+
 import ErrorMessage from '../../components/errorMessage/errorMessage'
 
 //context
@@ -23,7 +23,7 @@ class EditService extends Component{
         const notes = service.notes
         const people = service.people
         const cost = service.cost
-        const promotion_used = service.promotion_used
+
         this.setState({
             notes,
             people,

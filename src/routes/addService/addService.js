@@ -3,7 +3,6 @@ import {Redirect} from 'react-router-dom'
 import './addService.css'
 
 //validation services and error boxes
-import ValidateHelper from '../../services/validator'
 import ErrorMessage from '../../components/errorMessage/errorMessage'
 
 //context
