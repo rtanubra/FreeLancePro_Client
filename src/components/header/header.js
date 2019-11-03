@@ -24,7 +24,7 @@ class Header extends Component{
             <div className="css-myHeader">
                 <h1><strong><Link to={''} className="css_header_links" >FreeLance Pro</Link></strong></h1>
                 <div className="css-login">
-                    <Link  to={'/login'} className="css_header_links css_login_button" id="login">Login</Link> | <Link to={'/register'} className="css_header_links css_signup_button" id="sign-up">Signup</Link> 
+                    <Link  to={'/login'} className="css_header_links css_login_button" id="login">Login</Link> 
                 </div>
             <hr></hr>
             </div>
