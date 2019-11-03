@@ -50,6 +50,7 @@ class App extends Component{
         }
         else {
           //success
+          this.setState({loggedIn:true})
           this.fetchPromos()
           this.fetchServices()
           this.fetchClients()
@@ -101,7 +102,11 @@ class App extends Component{
 
   fetchClients=()=>{
     const url = `${config.API_ENDPOINT}/api/clients/`
-    fetch(url).then(res=>res.json()).then(jsonRes=>{
+    fetch(url,{
+      headers : new Headers({
+        'Authorization': window.localStorage.getItem('FLPauthToken') ? `bearer ${window.localStorage.getItem('FLPauthToken')}`:""
+      })
+    }).then(res=>res.json()).then(jsonRes=>{
       if (jsonRes.error){
         console.log(jsonRes.error)
       } else {
@@ -173,11 +178,6 @@ class App extends Component{
         <Switch>
           <Route
             exact
-            path={'/'}
-            component={LandingPage}
-          />
-          <Route
-            exact
             path={'/register'}
             component={Register}
           />
@@ -211,6 +211,9 @@ class App extends Component{
             path={'/editService/:serviceId'}
             component={EditService}
             />
+          <Route
+            component={LandingPage}
+          />
         </Switch>   
       </div>
       </FlpContext.Provider>
