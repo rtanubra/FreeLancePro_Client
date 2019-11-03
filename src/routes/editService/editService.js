@@ -177,7 +177,10 @@ class EditService extends Component{
             const url = `${config.API_ENDPOINT}/api/services/${service.id}`
             fetch(url,{
                 method:'PATCH',
-                headers:{'content-type':'application/json'},
+                headers: new Headers({
+                    'content-type':'application/json',
+                    "Authorization":window.localStorage.getItem('FLPauthToken') ? `bearer ${window.localStorage.getItem('FLPauthToken')}`:""
+                }),
                 body:JSON.stringify(service)
             }).then(res=>res.json()).then(jsonRes=>{
                 if (jsonRes.error){

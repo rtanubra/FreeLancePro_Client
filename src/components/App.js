@@ -80,7 +80,11 @@ class App extends Component{
   }
   fetchPromos=()=>{
     const url = `${config.API_ENDPOINT}/api/promos/`
-    fetch(url).then(res=>res.json()).then(jsonRes=>{
+    fetch(url,{
+      headers: new Headers ({
+        "Authorization":window.localStorage.getItem('FLPauthToken') ? `bearer ${window.localStorage.getItem('FLPauthToken')}`:""
+      })
+    }).then(res=>res.json()).then(jsonRes=>{
       if (jsonRes.error){
         console.log(jsonRes.error)
       } else {
@@ -90,7 +94,11 @@ class App extends Component{
   }
   fetchServices=()=>{
     const url = `${config.API_ENDPOINT}/api/services/`
-    fetch(url).then(res=>res.json()).then(jsonRes=>{
+    fetch(url,{
+      headers: new Headers ({
+        "Authorization":window.localStorage.getItem('FLPauthToken') ? `bearer ${window.localStorage.getItem('FLPauthToken')}`:""
+      })
+    }).then(res=>res.json()).then(jsonRes=>{
       if (jsonRes.error){
         console.log(jsonRes.error)
       } else {
@@ -131,7 +139,10 @@ class App extends Component{
   deleteClient = (clientId)=>{
     const url = `${config.API_ENDPOINT}/api/clients/${clientId}`
     fetch(url,{
-      method:`DELETE`
+      method:`DELETE`,
+      headers: new Headers({
+        "Authorization":window.localStorage.getItem('FLPauthToken') ? `bearer ${window.localStorage.getItem('FLPauthToken')}`:""
+      })
     }).then(res=>{
       this.fetchClients()
     })
@@ -139,7 +150,10 @@ class App extends Component{
   deleteService = (serviceId)=>{
     const url = `${config.API_ENDPOINT}/api/services/${serviceId}`
     fetch(url,{
-      method:`DELETE`
+      method:`DELETE`,
+      headers: new Headers({
+        "Authorization":window.localStorage.getItem('FLPauthToken') ? `bearer ${window.localStorage.getItem('FLPauthToken')}`:""
+      })
     }).then(res=>{
       this.fetchServices()
     })

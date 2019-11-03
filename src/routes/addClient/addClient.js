@@ -48,7 +48,10 @@ class AddClient extends Component{
             const url = `${config.API_ENDPOINT}/api/clients/`
             fetch(url,{
                 method:"POST",
-                headers:{'content-type':'application/json'},
+                headers:{
+                    'content-type':'application/json',
+                    "Authorization":window.localStorage.getItem('FLPauthToken') ? `bearer ${window.localStorage.getItem('FLPauthToken')}`:""
+                },
                 body:JSON.stringify(client)
             }).then(res=>res.json()).then(jsonRes=>{
                 if (jsonRes.error){

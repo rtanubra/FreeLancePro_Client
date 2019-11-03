@@ -184,7 +184,10 @@ class AddService extends Component{
             const url = `${config.API_ENDPOINT}/api/services/`
             fetch(url,{
                 method:"POST",
-                headers:{'content-type':'application/json'},
+                headers:new Headers({
+                    'content-type':'application/json',
+                    "Authorization":window.localStorage.getItem('FLPauthToken') ? `bearer ${window.localStorage.getItem('FLPauthToken')}`:""
+                }),
                 body:JSON.stringify(service)
             }).then(res=>res.json()).then(jsonRes=>{
                 if (jsonRes.error){
