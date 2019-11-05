@@ -32,6 +32,7 @@ code {
 button:hover {
   opacity:50;
 }
+
 form {
     border:1px solid #ccc;
     padding-right:60px;
@@ -56,6 +57,22 @@ input[type=text], input[type=password],input[type=email] ,input[type=tel],input[
   opacity: 0.9;
   margin-top:20px;
   margin-bottom:20px;
+}
+.css_toggle_view{
+  background-color:purple;
+  color:white;
+  font-size:20px;
+  padding:14px 20px;
+  border: none;
+  cursor:pointer;
+  width:20%;
+  opacity: 0.9;
+  margin-top:20px;
+  margin-bottom:20px;
+  margin-left:40%;
+  margin-right:40%;
+  border-radius:10px;
+  
 }
 #css_addClient{
   width:60%;

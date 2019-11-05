@@ -137,7 +137,17 @@ class App extends Component{
     this.setState({loggedIn})
   }
 
-
+  promoDelete= (promoId)=>{
+    const url = `${config.API_ENDPOINT}/api/promos/${promoId}`
+    fetch(url,{
+      method:`DELETE`,
+      headers: new Headers({
+        "Authorization":window.localStorage.getItem('FLPauthToken') ? `bearer ${window.localStorage.getItem('FLPauthToken')}`:""
+      })
+    }).then(res=>{
+      this.fetchPromos()
+    })
+  }
   deleteClient = (clientId)=>{
     const url = `${config.API_ENDPOINT}/api/clients/${clientId}`
     fetch(url,{
@@ -177,6 +187,7 @@ class App extends Component{
     const contextValue = {
             ...this.state
     }
+    contextValue.promoDelete = this.promoDelete
     contextValue.fetchLoginTest = this.fetchLoginTest
     contextValue.fetchPromos=this.fetchPromos
     contextValue.fetchClients = this.fetchClients

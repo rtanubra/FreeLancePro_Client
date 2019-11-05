@@ -76,6 +76,7 @@ class AddPromo extends Component{
                         mainError,mainErrorMessage
                     })
                 }else {
+                    this.context.fetchPromos()
                     this.setState({
                         success:true
                     })
