@@ -16,6 +16,8 @@ import config from '../../config'
 class AddPromo extends Component{
     static contextType = FlpContext
     state={
+        mainError:false,
+        mainErrorMessage:"",
         success:false,
         name:"",
         description:"",
@@ -44,10 +46,48 @@ class AddPromo extends Component{
         if(this.state.error.error_description ||this.state.error.error_end || this.state.error.error_name ||this.state.error.error_start ){
             //do nothing because there is an error
         }
+        else {
+            const url = `${config.API_ENDPOINT}/api/promos/`
+            const promo = {
+                name:this.state.name,
+                description:this.state.description,
+            }
+            if (this.state.start){
+                promo.date_created = DateServices.stringToDate(this.state.start)
+            }
+            if (this.state.end){
+                promo.date_ending = DateServices.stringToDate(this.state.end)
+            }
+            
+            fetch(url,{
+                method:"POST",
+                headers: new Headers({
+                    'content-type':'application/json',
+                    "Authorization":window.localStorage.getItem('FLPauthToken') ? `bearer ${window.localStorage.getItem('FLPauthToken')}`:""
+                }),
+                body: JSON.stringify(promo)
+            }).then(res=>res.json()).then(jsonRes=>{
+                //response is here
+                console.log(jsonRes)
+                if (jsonRes.error){
+                    const mainError = true
+                    const mainErrorMessage = jsonRes.error
+                    this.setState({
+                        mainError,mainErrorMessage
+                    })
+                }else {
+                    this.setState({
+                        success:true
+                    })
+                }
+            })
+            
+        }
     }
     handleNameChange = (event)=>{
         const name =  event.target.value;
-
+        let mainError=false 
+        let mainErrorMessage= ""
         let error_name= false
         let error_description=this.state.error.error_description
         let error_start=this.state.error.error_start
@@ -64,7 +104,7 @@ class AddPromo extends Component{
         
 
         this.setState({
-            name,
+            name,mainError, mainErrorMessage,
             error:{
                 error_name:error_name,
                 error_description:error_description,
@@ -82,6 +122,8 @@ class AddPromo extends Component{
     handleDescriptionChange = (event)=>{
         const description = event.target.value
 
+        let mainError=false 
+        let mainErrorMessage= ""
         let error_name= this.state.error.error_name
         let error_description= false
         let error_start=this.state.error.error_start
@@ -96,7 +138,7 @@ class AddPromo extends Component{
         error_message_description= valid[1]
 
         this.setState({
-            description,
+            description,mainError,mainErrorMessage,
             error:{
                 error_name:error_name,
                 error_description:error_description,
@@ -118,6 +160,8 @@ class AddPromo extends Component{
     handleEndChange= (event)=>{
         const end = event.target.value
         
+        let mainError=false 
+        let mainErrorMessage= ""
         let error_name= this.state.error.error_name
         let error_description= this.state.error.error_description
         let error_start=this.state.error.error_start
@@ -136,7 +180,7 @@ class AddPromo extends Component{
             error_message_end = "End date or promotion must be after start date (You can leave it blank to make it last for over a year)"
         }
         this.setState({
-            end,
+            end,mainError,mainErrorMessage,
             error:{
                 error_name:error_name,
                 error_description:error_description,
@@ -153,7 +197,7 @@ class AddPromo extends Component{
     }
     render(){
         if (this.state.success){
-            return <Redirect to={'/client/'}/>
+            return <Redirect to={'/promosList/'}/>
         }
 
         return (
@@ -162,6 +206,7 @@ class AddPromo extends Component{
                 <div className="css_body_middle" >
                     <form onSubmit={this.handleSubmit}>
 
+                        {this.state.mainError ? <ErrorMessage message={this.state.mainErrorMessage} />:"" }
                         {this.state.error.error_name? <ErrorMessage message={this.state.error_message.error_message_name} />:"" }
                         <label htmlFor="js_promo_name" >Name</label>
                         <input required onChange={this.handleNameChange} 
@@ -177,7 +222,7 @@ class AddPromo extends Component{
                         <br/>
 
                         {this.state.error.error_start? <ErrorMessage message={this.state.error_message.error_message_start} />:"" }
-                        <label htmlFor="js_promo_start" >Promo Start Date (optional) </label>
+                        <label htmlFor="js_promo_start" >Promo Start Date </label>
                         <input  onChange={this.handleStartChange} 
                         placeholder={this.state.start} value={this.state.start} 
                         id="js_promo_start" name="js_promo_start" type="date" />

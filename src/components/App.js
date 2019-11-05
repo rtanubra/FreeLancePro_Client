@@ -14,6 +14,7 @@ import AddService from '../routes/addService/addService'
 import EditClient from '../routes/editClient/editClient'
 import EditService from '../routes/editService/editService'
 import AddPromo from '../routes/addPromo/addPromo'
+import PromoList from '../routes/promoList/promoList'
 
 //contexts
 import FlpContext from '../contexts/flpContext'
@@ -230,6 +231,12 @@ class App extends Component{
             exact
             path={`/addPromo`}
             component={AddPromo}
+          />
+          <Route
+            exact
+            path={`/promosList`}
+            component={PromoList}
+          
           />
           <Route
             component={LandingPage}
