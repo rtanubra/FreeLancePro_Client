@@ -36,11 +36,14 @@ class AddPromo extends Component{
     }
     componentDidMount(){
         var start = new Date()
-        start = DateServices.convertToformat(start)
+        start = DateServices.dateToString(start)
         this.setState({start})
     }
     handleSubmit = (event)=>{
         event.preventDefault()
+        if(this.state.error.error_description ||this.state.error.error_end || this.state.error.error_name ||this.state.error.error_start ){
+            //do nothing because there is an error
+        }
     }
     handleNameChange = (event)=>{
         const name =  event.target.value;
@@ -114,13 +117,45 @@ class AddPromo extends Component{
     }
     handleEndChange= (event)=>{
         const end = event.target.value
-        this.setState({end})
+        
+        let error_name= this.state.error.error_name
+        let error_description= this.state.error.error_description
+        let error_start=this.state.error.error_start
+        let error_end= false 
+        let error_message_name = this.state.error_message.error_message_name
+        let error_message_description = this.state.error_message.error_message_description
+        let error_message_start = this.state.error_message.error_message_start
+        let error_message_end = ""
+
+        //cannot be before start
+        const startDate =DateServices.stringToDate(this.state.start)
+        const endDate = DateServices.stringToDate(end)
+
+        if (startDate>=endDate){
+            error_end = true
+            error_message_end = "End date or promotion must be after start date (You can leave it blank to make it last for over a year)"
+        }
+        this.setState({
+            end,
+            error:{
+                error_name:error_name,
+                error_description:error_description,
+                error_start:error_start,
+                error_end:error_end
+            },
+            error_message:{
+                error_message_name:error_message_name,
+                error_message_description:error_message_description,
+                error_message_start:error_message_start,
+                error_message_end:error_message_end
+            }
+        })
     }
     render(){
         if (this.state.success){
             return <Redirect to={'/client/'}/>
         }
-        console.log(this.state)
+
         return (
             <>
                 <h2 className="css_h2_header" >Add Promo</h2>
@@ -150,7 +185,7 @@ class AddPromo extends Component{
 
                         {this.state.error.error_end? <ErrorMessage message={this.state.error_message.error_message_end} />:"" }
                         <label htmlFor="js_promo_end" >Promo End Date (optional) </label>
-                        <input  onChange={this.handleStartChange} 
+                        <input  onChange={this.handleEndChange} 
                         placeholder={this.state.end} value={this.state.end} 
                         id="js_promo_end" name="js_promo_end" type="date" />
                         <br/>
