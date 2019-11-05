@@ -13,6 +13,7 @@ import AddClient from '../routes/addClient/addClient'
 import AddService from '../routes/addService/addService'
 import EditClient from '../routes/editClient/editClient'
 import EditService from '../routes/editService/editService'
+import AddPromo from '../routes/addPromo/addPromo'
 
 //contexts
 import FlpContext from '../contexts/flpContext'
@@ -225,6 +226,11 @@ class App extends Component{
             path={'/editService/:serviceId'}
             component={EditService}
             />
+          <Route
+            exact
+            path={`/addPromo`}
+            component={AddPromo}
+          />
           <Route
             component={LandingPage}
           />

@@ -1,4 +1,33 @@
 const ValidateHelper = {
+    
+    promoNameCheck(name){
+        if (name.length<3){
+            return [false,"Promo Name - Should be at least 3 characters long"]
+        }
+        const patAlpha = /[a-zA-Z]/
+        if(!patAlpha.test(name)){
+            return [false, "Promo Name - Should contain alphabetical characters"]
+        }
+        const patNum = /[0-9]/
+        if(!patNum.test(name)){
+            return [false, "Promo Name - Should contain numeric characters"]
+        }
+        return [true,0]
+    },
+    promoDescriptionCheck(description){
+        if (description.length<10){
+            return [false,"Promo Description - Should be at least 10 characters long"]
+        }
+        const patAlpha = /[a-zA-Z]/
+        if(!patAlpha.test(description)){
+            return [false, "Promo Description - Should contain alphabetical characters"]
+        }
+        const patNum = /[0-9]/
+        if(!patNum.test(description)){
+            return [false, "Promo Description - Should contain numeric characters"]
+        }
+        return [true,0]
+    },
     nameCheck(name){
         if (name.length<3 || name.length >15){
             return [false,"Should be between 3-15 characters"]
