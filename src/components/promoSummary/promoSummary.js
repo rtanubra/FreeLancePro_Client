@@ -6,6 +6,8 @@ import DeletePromoWarning from '../../components/deleteWarning/deletePromo'
 import FlpContext from '../../contexts/flpContext'
 import PromoClientList from '../promoClientList/promoClientList'
 
+import './promoSummary.css'
+
 class PromoSummary extends Component{
     static contextType = FlpContext
     state = {
@@ -52,7 +54,9 @@ class PromoSummary extends Component{
                         <p>End Date: {endDate} </p>
                         <p>Users with this Promo: {this.state.clients.length}{this.state.clients.length >0?<span> <i onClick={this.toggleClientList} className={`fas ${this.state.clientsList?"fa-angle-double-up":"fa-angle-double-down"}`}></i> </span> :""} </p>
                         {this.state.clientsList?<PromoClientList toggleClientList={this.toggleClientList} clients={this.state.clients} />:""}
-
+                        <div className="promoAction" >
+                            <Link to={`/givePromo/${this.props.promo.id}/`}><i className="fa fa-gift" aria-hidden="true"></i></Link>
+                        </div>
                     </h4> 
                 </div>
             </>)

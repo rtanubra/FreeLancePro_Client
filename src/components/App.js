@@ -16,6 +16,7 @@ import EditService from '../routes/editService/editService'
 import AddPromo from '../routes/addPromo/addPromo'
 import PromoList from '../routes/promoList/promoList'
 import EditPromo from '../routes/editPromo/editPromo'
+import GivePromo from '../routes/givePromo/givePromo'
 
 //contexts
 import FlpContext from '../contexts/flpContext'
@@ -252,6 +253,11 @@ class App extends Component{
             exact
             path={`/editPromo/:promoId`}
             component={EditPromo}
+          />
+          <Route
+            exact
+            path={`/givePromo/:promoId`}
+            component={GivePromo}
           />
           <Route
             exact
