@@ -15,6 +15,7 @@ import EditClient from '../routes/editClient/editClient'
 import EditService from '../routes/editService/editService'
 import AddPromo from '../routes/addPromo/addPromo'
 import PromoList from '../routes/promoList/promoList'
+import EditPromo from '../routes/editPromo/editPromo'
 
 //contexts
 import FlpContext from '../contexts/flpContext'
@@ -76,6 +77,9 @@ class App extends Component{
       }
       else{
         //console.log(jsonRes.authToken)
+        this.fetchServices()
+        this.fetchClients()
+        this.fetchPromos()
         this.logIn(jsonRes.authToken,jsonRes.payload)
       }
     })
@@ -146,6 +150,8 @@ class App extends Component{
       })
     }).then(res=>{
       this.fetchPromos()
+      this.fetchClients()
+      this.fetchServices()
     })
   }
   deleteClient = (clientId)=>{
@@ -197,7 +203,6 @@ class App extends Component{
     contextValue.editService = this.editService
     contextValue.logIn = this.logIn
     contextValue.logOut = this.logOut
-
     return (
       <FlpContext.Provider value={contextValue}>
       <div>
@@ -245,11 +250,16 @@ class App extends Component{
           />
           <Route
             exact
-            path={`/promosList`}
-            component={PromoList}
-          
+            path={`/editPromo/:promoId`}
+            component={EditPromo}
           />
           <Route
+            exact
+            path={`/promosList`}
+            component={PromoList}
+          />
+          <Route
+
             component={LandingPage}
           />
         </Switch>   

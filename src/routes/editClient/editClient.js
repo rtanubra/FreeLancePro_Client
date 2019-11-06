@@ -20,13 +20,16 @@ class EditClient extends Component{
             return client.id === clientId
         })
         
+        
         const client = clients[0]
-        const name = client.name
-        const phone = client.phone
-        const email = client.email
-        this.setState({
-            name,phone,email
-        })
+        if (client){
+            const name = client.name
+            const phone = client.phone
+            const email = client.email
+            this.setState({
+                name,phone,email
+            })
+        }
         
     }
     handleSubmit = (event) =>{

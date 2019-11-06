@@ -47,7 +47,7 @@ class ClientSummary extends Component{
 
         return (
             <div className="css_client">
-                <h4><Link to={`editClient/${this.props.id}`}><i className="fa fa-edit"></i></Link>- {this.props.name} - <span><button onClick={this.handleClientDelete} ><i className="fa fa-trash" aria-hidden="true"></i></button></span></h4> 
+                <h4><Link to={`/editClient/${this.props.id}`}><i className="fa fa-edit"></i></Link>- {this.props.name} - <span><button onClick={this.handleClientDelete} ><i className="fa fa-trash" aria-hidden="true"></i></button></span></h4> 
                 <br></br>
                 {this.state.deleteOn? <DeleteWarning handleClientDelete={this.handleClientDelete} clientId={parseInt(this.props.id)} />:""}
                 <Link to={`/addService/${this.props.id}`} ><button className="css_button">Add Service</button></Link>
