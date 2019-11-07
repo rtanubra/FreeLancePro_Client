@@ -10,6 +10,7 @@ class PromoList extends Component{
     state={
         searchTerm:""
     }
+
     static contextType= FlpContext
     handleSearchChange=(event)=>{
         const searchTerm = event.target.value
@@ -17,7 +18,6 @@ class PromoList extends Component{
     }
     handleSubmit=(event)=>{
         event.preventDefault()
-        console.log(this.state.searchTerm)
     }
     render(){
 

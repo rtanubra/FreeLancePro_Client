@@ -1,12 +1,15 @@
 import React, {Component} from 'react'
 import './promoClientTable.css'
-import {Link} from 'react-router-dom'
+import {Link,Redirect} from 'react-router-dom'
 import FlpContext from '../../contexts/flpContext'
+
+import config from '../../config'
 
 class PromoClientTable extends Component{
     static contextType = FlpContext
     state = {
-        clientsToAdd:[]
+        clientsToAdd:[],
+        success:false
     }
     findPromoName= (promoId,promos)=>{
         const promo = promos.find(promo=>{
@@ -33,6 +36,26 @@ class PromoClientTable extends Component{
     handleSubmit = (event)=>{
         event.preventDefault()
         console.log(this.state.clientsToAdd)
+        const clients = this.state.clientsToAdd.map(client=>{
+            return parseInt(client)
+        })
+        const massUpdate = {
+            promo_id:parseInt(this.props.promo_id),
+            clients
+        }
+        const url = `${config.API_ENDPOINT}/api/promos/`
+        fetch(url,{
+            method:"PATCH",
+            headers: new Headers({
+                'content-type':'application/json',
+                "Authorization":window.localStorage.getItem('FLPauthToken') ? `bearer ${window.localStorage.getItem('FLPauthToken')}`:""
+            }),
+            body: JSON.stringify(massUpdate)
+        }).then(res=>{
+            this.context.fetchClients()
+            this.context.fetchPromos()
+            this.setState({success:true})
+        })
     }
     render(){
         const promos = [...this.context.promotions]
@@ -47,7 +70,9 @@ class PromoClientTable extends Component{
                 
             </tr>)
         }) 
-    
+        if (this.state.success){
+            return <Redirect to={'/client'}/>
+        }
         return (
         <>
             <form onSubmit={this.handleSubmit}>

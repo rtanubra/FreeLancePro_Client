@@ -8,9 +8,6 @@ class GivePromo extends Component{
         name:""
 
     }
-    startingPoint(){
-
-    }
     componentWillMount(){
         this.context.fetchClients()
         this.context.fetchPromos()
@@ -33,7 +30,7 @@ class GivePromo extends Component{
                 <h2 className="css_h2_header" >Give Promotion {promo?promo.name:""   } to your clients!</h2>
                 <h3 className="css_h2_header" >Promo ID - {promo?promo.id:""}</h3>
                 <div className="css_client"> 
-                    <PromoClientTable />
+                    <PromoClientTable promo_id={promo?promo.id:""} />
                 </div>
             </>)
     }
