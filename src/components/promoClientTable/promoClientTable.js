@@ -63,10 +63,11 @@ class PromoClientTable extends Component{
             return (
             <tr key={`tr_client_${client.id}`} >
                 <td>{client.name}</td>
-                <td>{client.id}</td>
-                <td>{this.findPromoName(client.open_promo,promos)}</td>
-                <td>{client.open_promo}</td>
-                <td> <input onClick={this.handleCheck} type="checkbox" name={`${client.id}-give`} value={client.id} /></td>
+                <td> <input onClick={this.handleCheck} type="checkbox" name={`${client.id}-give`} value={client.id} /></td>  
+                <td className="css_mid_hide" >{this.findPromoName(client.open_promo,promos)}</td>
+                <td className="css_small_hide" >{client.id}</td>
+                <td className="css_small_hide" >{client.open_promo}</td>
+                
                 
             </tr>)
         }) 
@@ -80,10 +81,11 @@ class PromoClientTable extends Component{
                 <thead>
                     <tr>
                         <th>Client Name</th>
-                        <th>Client id</th>
-                        <th>Current Promo</th>
-                        <th>Current Promo Id</th>
-                        <th>Give to Client</th>
+                        <th>Give promo</th>
+                        <th className="css_mid_hide" >Current Promo</th>
+                        <th className="css_small_hide" >Client id</th>
+                        <th className="css_small_hide" >Current Promo Id</th>
+                        
                     </tr>
                 </thead>
                 <tbody>

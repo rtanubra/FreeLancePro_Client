@@ -42,7 +42,9 @@ class PromoList extends Component{
             <>
                 <h2 className="css_h2_header">Welcome Back Finese</h2>
                 <h3 className="css_h2_header" >Promos View</h3>
-                <Link to={`/client`}><button className="css_toggle_view">Toggle View</button></Link>
+                <div className="css_toggle_view_div">
+                    <Link to={`/client`}><button className="css_toggle_view">Toggle View</button></Link>
+                </div>
                 <div className="css_body_middle" >
                 <Link to={'/addPromo'} ><button id="css_addClient" className="css_addClient" >Add New Promo</button></Link>
                 <form className="css_searchForm" onSubmit={this.handleSubmit}> 

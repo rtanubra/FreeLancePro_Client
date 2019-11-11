@@ -27,6 +27,7 @@ import config from '../config'
 
 //services
 import AuthService from '../services/authServices'
+import EmailService from '../services/emailServices'
 
 class App extends Component{
   
@@ -54,10 +55,10 @@ class App extends Component{
         }
         else {
           //success
-          this.setState({loggedIn:true})
+          this.setState({loggedIn:true})     
           this.fetchPromos()
           this.fetchServices()
-          this.fetchClients()
+
         }
       })
     }
@@ -96,6 +97,7 @@ class App extends Component{
         console.log(jsonRes.error)
       } else {
         this.setState({promotions:[...jsonRes]})
+        this.fetchClients()
       }
     })
   }
@@ -110,6 +112,7 @@ class App extends Component{
         console.log(jsonRes.error)
       } else {
         this.setState({services:[...jsonRes]})
+        this.fetchClients()
       }
     })
   }

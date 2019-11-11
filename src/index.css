@@ -58,6 +58,9 @@ input[type=text], input[type=password],input[type=email] ,input[type=tel],input[
   margin-top:20px;
   margin-bottom:20px;
 }
+.css_toggle_view_div{
+  text-align:center;
+}
 .css_toggle_view{
   background-color:purple;
   color:white;
@@ -65,13 +68,12 @@ input[type=text], input[type=password],input[type=email] ,input[type=tel],input[
   padding:14px 20px;
   border: none;
   cursor:pointer;
-  width:20%;
+  width:150px;
   opacity: 0.9;
   margin-top:20px;
   margin-bottom:20px;
-  margin-left:40%;
-  margin-right:40%;
   border-radius:10px;
+
   
 }
 #css_addClient{
@@ -110,6 +112,15 @@ th{
 }
 .css_small_hide{
   visibility: hidden
+}
+.css_mid_hide{
+  visibility: hidden
+}
+
+@media only screen and (min-width: 414px) {
+  .css_mid_hide{
+    visibility:visible;
+  }
 }
 
 @media only screen and (min-width: 560px) {
