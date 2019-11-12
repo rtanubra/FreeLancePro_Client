@@ -33,8 +33,7 @@ class PromoClientTable extends Component{
         })
 
     }
-    emailOut = (event)=>{
-        event.preventDefault()
+    emailOut = ()=>{
         const clients = this.state.clientsToAdd.map(client=>{
             return parseInt(client)
         })
@@ -70,6 +69,9 @@ class PromoClientTable extends Component{
                 }),
                 body: JSON.stringify(myRequest)
             }).then(res=>{
+                if(res.error){
+                    console.log(res.error)
+                }
                 this.updateFetch()
             })
             
@@ -99,27 +101,7 @@ class PromoClientTable extends Component{
     }
     handleSubmit = (event)=>{
         event.preventDefault()
-
-        const clients = this.state.clientsToAdd.map(client=>{
-            return parseInt(client)
-        })
-        const massUpdate = {
-            promo_id:parseInt(this.props.promo_id),
-            clients
-        }
-        const url = `${config.API_ENDPOINT}/api/promos/`
-        fetch(url,{
-            method:"PATCH",
-            headers: new Headers({
-                'content-type':'application/json',
-                "Authorization":window.localStorage.getItem('FLPauthToken') ? `bearer ${window.localStorage.getItem('FLPauthToken')}`:""
-            }),
-            body: JSON.stringify(massUpdate)
-        }).then(res=>{
-            this.context.fetchClients()
-            this.context.fetchPromos()
-            this.setState({success:true})
-        })
+        this.emailOut()
     }
     render(){
         const promos = [...this.context.promotions]
