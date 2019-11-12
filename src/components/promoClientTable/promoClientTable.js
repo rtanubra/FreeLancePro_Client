@@ -15,7 +15,7 @@ class PromoClientTable extends Component{
         const promo = promos.find(promo=>{
             return promo.id === parseInt(promoId)
         })
-        const name = promo? promo.name:"Incorrect Id"
+        const name = promo? promo.name:"N/A"
         return name
     }
     handleCheck = (event)=>{
@@ -33,9 +33,73 @@ class PromoClientTable extends Component{
         })
 
     }
+    emailOut = (event)=>{
+        event.preventDefault()
+        const clients = this.state.clientsToAdd.map(client=>{
+            return parseInt(client)
+        })
+        const clientList= []
+        let client
+        for (let x in clients){
+            client = this.context.clients.filter(client=>{
+               return client.id === clients[x]  
+            })
+            client = {...client}
+            clientList.push(client)
+        }
+        const emails = []
+        const names = []
+
+        if (clientList.length>0){
+            clientList.map(cl=>{
+                emails.push(cl[0].email)
+                names.push(cl[0].name)
+            })
+            const myRequest = {
+                emails:[...emails],
+                names:[...names],
+                promo_name:this.props.promo.name,
+                promo_description:this.props.promo.description
+            }
+            const url = `${config.API_ENDPOINT}/api/emails`
+            fetch(url,{
+                method:"POST",
+                headers: new Headers({
+                    'content-type':'application/json',
+                    "Authorization":window.localStorage.getItem('FLPauthToken') ? `bearer ${window.localStorage.getItem('FLPauthToken')}`:""
+                }),
+                body: JSON.stringify(myRequest)
+            }).then(res=>{
+                this.updateFetch()
+            })
+            
+        }
+    }
+    updateFetch(){
+        const clients = this.state.clientsToAdd.map(client=>{
+            return parseInt(client)
+        })
+        const massUpdate = {
+            promo_id:parseInt(this.props.promo_id),
+            clients
+        }
+        const url = `${config.API_ENDPOINT}/api/promos/`
+        fetch(url,{
+            method:"PATCH",
+            headers: new Headers({
+                'content-type':'application/json',
+                "Authorization":window.localStorage.getItem('FLPauthToken') ? `bearer ${window.localStorage.getItem('FLPauthToken')}`:""
+            }),
+            body: JSON.stringify(massUpdate)
+        }).then(res=>{
+            this.context.fetchClients()
+            this.context.fetchPromos()
+            this.setState({success:true})
+        })
+    }
     handleSubmit = (event)=>{
         event.preventDefault()
-        console.log(this.state.clientsToAdd)
+
         const clients = this.state.clientsToAdd.map(client=>{
             return parseInt(client)
         })
@@ -92,7 +156,8 @@ class PromoClientTable extends Component{
                     {clients}
                 </tbody>
             </table>
-            <button className="css_button css_add_client_success" type="submit"  >Give Promos</button>
+            <button className="css_button css_add_client_success" type="submit" >Assign Promo</button>
+            
             </form>
             <Link to={`/promoslist/`} ><button className="css_toggle_view" >Back to Promos</button></Link>
         </>

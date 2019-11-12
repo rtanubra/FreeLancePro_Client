@@ -30,7 +30,7 @@ class GivePromo extends Component{
                 <h2 className="css_h2_header" >Give Promotion {promo?promo.name:""   } to your clients!</h2>
                 <h3 className="css_h2_header" >Promo ID - {promo?promo.id:""}</h3>
                 <div className="css_client"> 
-                    <PromoClientTable promo_id={promo?promo.id:""} />
+                    <PromoClientTable promo={promo?promo:""} promo_id={promo?promo.id:""} />
                 </div>
             </>)
     }
