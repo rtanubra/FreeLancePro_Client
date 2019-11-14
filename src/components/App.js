@@ -78,11 +78,12 @@ class App extends Component{
         console.log(jsonRes.error)
       }
       else{
+        this.logIn(jsonRes.authToken,jsonRes.payload)
         //console.log(jsonRes.authToken)
         this.fetchServices()
         this.fetchClients()
         this.fetchPromos()
-        this.logIn(jsonRes.authToken,jsonRes.payload)
+        
       }
     })
   }
