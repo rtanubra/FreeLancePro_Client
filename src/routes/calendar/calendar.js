@@ -9,7 +9,12 @@ class Calender extends Component{
                 {false?<img border="0" src="https://www.google.com/calendar/images/ext/gc_button1_en.gif"/>:""}  
             </a>
             <br/><br/>
-            <iframe className="css_calendar" src="https://calendar.google.com/calendar/embed?src=reyt.apps%40gmail.com&ctz=America%2FToronto"  width="400" height="500" frameborder="0" scrolling="yes"></iframe>
+            <iframe src="https://calendar.google.com/calendar/embed?height=500&amp;wkst=1&amp;bgcolor=%23ffffff&amp;ctz=America%2FToronto&amp;src=cmV5dC5hcHBzQGdtYWlsLmNvbQ&amp;src=ZW4uY2FuYWRpYW4jaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&amp;color=%2322AA99&amp;color=%231F753C&amp;showNav=0&amp;showDate=0&amp;showTitle=1&amp;showPrint=0&amp;showTabs=1&amp;showCalendars=0&amp;mode=WEEK" 
+                width="550" 
+                height="500" 
+                frameBorder="0"
+                scrolling="no">
+             </iframe>
    
         </div>)
 
