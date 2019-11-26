@@ -1,9 +1,16 @@
 import React, {Component} from 'react'
 import './calendar.css'
+import NavBar from '../../components/navBar/navBar'
+
 class Calender extends Component{
     render(){
         return (
-        <div className="css_body_middle" >
+        <>
+            
+            <h2 className="css_h2_header">Welcome Back Finese</h2>
+            <h3 className="css_h2_header" >Calendar View </h3>
+            <NavBar active="calendar" />
+            <div className="css_body_middle">
             <a target="_blank" href="https://calendar.google.com/event?action=TEMPLATE&amp;tmeid=N3U3ZTA5YW0ybjBvZjNsaW9ja25scHVqMW4gcmV5dC5hcHBzQG0&amp;tmsrc=reyt.apps%40gmail.com">
                 <button className="css_addClient" >Add an Event</button>
                 {false?<img border="0" src="https://www.google.com/calendar/images/ext/gc_button1_en.gif"/>:""}  
@@ -15,8 +22,9 @@ class Calender extends Component{
                 frameBorder="0"
                 scrolling="no">
              </iframe>
+             </div>
    
-        </div>)
+        </>)
 
     }
 }

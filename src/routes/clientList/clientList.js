@@ -6,6 +6,7 @@ import {Link,Redirect} from 'react-router-dom'
 import FlpContext from '../../contexts/flpContext'
 import ClientSummary from '../../components/clientSummary/clientSummary'
 import FilterList from '../../components/filterList/filterList'
+import NavBar from '../../components/navBar/navBar'
 
 class ClientList extends Component{
     static contextType = FlpContext
@@ -49,10 +50,9 @@ class ClientList extends Component{
         return (
             <>
             <h2 className="css_h2_header">Welcome Back Finese</h2>
-            <h3 className="css_h2_header" >Clients View</h3>
-            <div className="css_toggle_view_div">
-                <Link to ={`/promoslist/`}><button className="css_toggle_view">Toggle View</button></Link>
-            </div>
+            <h3 className="css_h2_header" >Clients View </h3>
+
+            <NavBar active="clients" />
             <div className="css_body_middle" >
             <Link to={'/addClient'} ><button id="css_addClient" className="css_addClient" >Add New Client</button></Link>
                 <form className="css_searchForm" onSubmit={this.handleSubmit}> 

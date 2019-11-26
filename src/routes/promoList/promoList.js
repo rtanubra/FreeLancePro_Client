@@ -5,6 +5,7 @@ import {Link,Redirect} from 'react-router-dom'
 import FlpContext from '../../contexts/flpContext'
 import PromoSummary from '../../components/promoSummary/promoSummary'
 import FilterList from '../../components/filterList/filterList'
+import NavBar from '../../components/navBar/navBar'
 
 class PromoList extends Component{
     state={
@@ -40,11 +41,11 @@ class PromoList extends Component{
 
         return (
             <>
+
+            
                 <h2 className="css_h2_header">Welcome Back Finese</h2>
                 <h3 className="css_h2_header" >Promos View</h3>
-                <div className="css_toggle_view_div">
-                    <Link to={`/client`}><button className="css_toggle_view">Toggle View</button></Link>
-                </div>
+                <NavBar active="promos" />
                 <div className="css_body_middle" >
                 <Link to={'/addPromo'} ><button id="css_addClient" className="css_addClient" >Add New Promo</button></Link>
                 <form className="css_searchForm" onSubmit={this.handleSubmit}> 
