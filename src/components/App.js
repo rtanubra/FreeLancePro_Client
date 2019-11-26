@@ -17,6 +17,7 @@ import AddPromo from '../routes/addPromo/addPromo'
 import PromoList from '../routes/promoList/promoList'
 import EditPromo from '../routes/editPromo/editPromo'
 import GivePromo from '../routes/givePromo/givePromo'
+import Calendar from '../routes/calendar/calendar'
 
 //contexts
 import FlpContext from '../contexts/flpContext'
@@ -267,6 +268,12 @@ class App extends Component{
             exact
             path={`/promosList`}
             component={PromoList}
+          />
+          <Route 
+            exact
+            path={'/calendar'}
+            component = {Calendar}
+          
           />
           <Route
 
