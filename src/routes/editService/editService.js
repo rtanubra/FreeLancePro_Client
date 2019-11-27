@@ -226,7 +226,7 @@ class EditService extends Component{
                         <br/>
 
 
-                        <button className="css_button css_add_service_success" type="submit"  >Submit Client</button>
+                        <button className="css_button css_add_service_success" type="submit"  >Save Changes</button>
 
                 </form>
             </div>

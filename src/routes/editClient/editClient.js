@@ -206,7 +206,7 @@ class EditClient extends Component{
                             <label htmlFor="js_client_email" >Email</label>
                             <input required type="email" onChange={this.handleEmailChange} name="js_client_email" id="js_client_email" value={this.state.email} />
                             <br/>
-                            <button className="css_button css_add_client_success" type="submit"  >Submit Changes</button>
+                            <button className="css_button css_add_client_success" type="submit"  >Save Changes</button>
 
                     </form>
                 </div>

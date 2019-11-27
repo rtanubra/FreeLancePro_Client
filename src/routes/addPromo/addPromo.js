@@ -236,7 +236,7 @@ class AddPromo extends Component{
                         id="js_promo_end" name="js_promo_end" type="date" />
                         <br/>
 
-                        <button className="css_button css_add_client_success" type="submit"  >Add This Promo</button>
+                        <button className="css_button css_add_client_success" type="submit"  >Submit Promo</button>
 
                     </form>
                 </div>
