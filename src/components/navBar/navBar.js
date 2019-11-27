@@ -3,32 +3,15 @@ import {Link} from 'react-router-dom'
 import './navBar.css'
 class navBar extends Component{
     render(){
-        return (<div>
-        {this.props.active==="clients"? 
+        return (<>
         <div className="css_navBar" >
-            <Link className="css_navAnchor" to ="/client" ><button disabled className="css_navButton clients_off" >Clients</button></Link>
-            <Link className="css_navAnchor" to="/promoslist" ><button className="css_navButton promos"  >Promos</button></Link>
-            <Link className="css_navAnchor" to="/calendar" ><button className="css_navButton calendar" >Calendar</button></Link>
-        </div>
-        :""}
+            {this.props.active !== "clients"?<Link className="css_navAnchor" to ="/client" ><button className="css_navButton clients" >Clients</button></Link> : ""}
+            {this.props.active !== "promos"?<Link className="css_navAnchor" to ="/promoslist" ><button className="css_navButton promos" >Promos</button></Link> : ""}
+            {this.props.active !== "calendar"?<Link className="css_navAnchor" to ="/calendar" ><button className="css_navButton calendar" >Calendar</button></Link> : ""}
+            {this.props.active !== "analytics"?<Link className="css_navAnchor" to ="/analytics" ><button className="css_navButton analytics" >Analytics</button></Link> : ""}
 
-        {this.props.active==="promos"? 
-        <div className="css_navBar" >
-            <Link className="css_navAnchor" to ="/client" ><button className="css_navButton clients" >Clients</button></Link>
-            <Link className="css_navAnchor" to="/promoslist" ><button disabled className="css_navButton promos_off"  >Promos</button></Link>
-            <Link className="css_navAnchor" to="/calendar" ><button className="css_navButton calendar" >Calendar</button></Link>
         </div>
-        :""}
-
-        {this.props.active==="calendar"? 
-        <div className="css_navBar" >
-            <Link className="css_navAnchor" to ="/client" ><button className="css_navButton clients" >Clients</button></Link>
-            <Link className="css_navAnchor" to ="/promoslist" ><button className="css_navButton promos"  >Promos</button></Link>
-            <Link className="css_navAnchor" to ="/calendar" ><button disabled className="css_navButton calendar_off" >Calendar</button></Link>
-        </div>
-        :""}
-        
-        </div>)
+        </>)
     }
 }
 

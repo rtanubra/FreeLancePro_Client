@@ -18,6 +18,7 @@ import PromoList from '../routes/promoList/promoList'
 import EditPromo from '../routes/editPromo/editPromo'
 import GivePromo from '../routes/givePromo/givePromo'
 import Calendar from '../routes/calendar/calendar'
+import Analytics from '../routes/analytics/analytics'
 
 //contexts
 import FlpContext from '../contexts/flpContext'
@@ -273,10 +274,14 @@ class App extends Component{
             exact
             path={'/calendar'}
             component = {Calendar}
+          />
+          <Route
+            exact
+            path={'/analytics'}
+            component = {Analytics}
           
           />
           <Route
-
             component={LandingPage}
           />
         </Switch>   
