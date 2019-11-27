@@ -5,6 +5,7 @@ import FlpContext from '../../contexts/flpContext'
 
 import NavBar from '../../components/navBar/navBar'
 import BarGraph from '../../components/charts/bar'
+import DoughnutGraph from '../../components/charts/doughnut'
 
 import ChartService from '../../services/chartServices'
 class Analytics extends Component{
@@ -29,7 +30,10 @@ class Analytics extends Component{
         <h3 className="css_h2_header" >Analytics View </h3>
         <NavBar active="analytics" />
         <div className="css_body_middle">
-            <BarGraph view={"Client Spent ($) View"} labels={clientNames?clientNames:undefined} values={clientAmounts?clientAmounts:undefined} label="Amount $"  title="Amount spent per client ($)" />
+            <h2>Clients Spent view</h2>
+            <BarGraph labels={clientNames?clientNames:undefined} values={clientAmounts?clientAmounts:undefined} label="Amount $"  title="Amount spent per client ($) - bar graph" />
+            <br/>
+            <DoughnutGraph labels={clientNames?clientNames:undefined} values={clientAmounts?clientAmounts:undefined} label="Amount $"   title="Amount spent per client ($) - doughnut"/>
         </div>
         </>)
     }

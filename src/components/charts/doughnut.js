@@ -1,8 +1,7 @@
 import React, {Component} from 'react'
-import {Bar} from 'react-chartjs-2';
+import {Doughnut} from 'react-chartjs-2';
 
-class BarGraph extends Component {
-    
+class DoughnutGraph extends Component{
     render(){
         const chartData = {
             labels:this.props.labels,
@@ -22,23 +21,22 @@ class BarGraph extends Component {
                         
                     ]
                 }
-            ],
-            
+            ], 
         }
         return (<>
-            <Bar
+            <Doughnut 
                 data={chartData}
-
                 options={{
                     title:{
                         display:true,
                         text:this.props.title?this.props.title:"My Title",
                         fontSize:25
                     },
-
                 }}
-            />     
+            />
+        
         </>)
     }
 }
-export default BarGraph
+
+export default DoughnutGraph;
