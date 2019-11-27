@@ -15,31 +15,35 @@
 .css_navAnchor{
     width: 100%;
 }
-.calendar{
-    background-color: rgb(117, 152, 247);
-    color:white;
-}
+
 .calendar_off{
     border:rgb(117, 152, 247) 1px dashed;
     color:rgb(117, 152, 247);
 }
-.clients{
-    background-color: rgb(117, 152, 247);
-    color:white;
-}
-.analytics{
-    background-color: rgb(117, 152, 247);
-    color:white;
-}
+
+
 .clients_off{
     border:rgb(117, 152, 247) 1px dashed;
     color:rgb(117, 152, 247);
 }
-.promos{
-    background-color: rgb(117, 152, 247);
-    color:white;
-}
+
 .promos_off{
     border:rgb(117, 152, 247) 1px dashed;
     color:rgb(117, 152, 247);
+}
+.clients{
+    background-color: rgb(255,102,255);
+    color:white;
+}
+.promos{
+    background-color: rgb(102,178,255);
+    color:white;
+}
+.calendar{
+    background-color: rgb(102,102,255);
+    color:white;
+}
+.analytics{
+    background-color: rgb(178,102,255);
+    color:white;
 }
