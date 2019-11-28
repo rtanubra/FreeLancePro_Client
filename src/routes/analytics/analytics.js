@@ -12,16 +12,23 @@ class Analytics extends Component{
     static contextType = FlpContext
 
     render(){
-        
+        console.log(this.context.services)
         const clientNames= this.context.clients.map(client=>{
             return client.name
         })
+        const clientIds = this.context.clients.map(client=>{
+            return client.id
+        })
         const clientAmounts= []
         this.context.services.forEach(service=>{
-            if (clientAmounts[service.client_id-1]){
-                clientAmounts[service.client_id-1] = clientAmounts[service.client_id-1] + service.cost
-            }else {
-               clientAmounts[service.client_id-1] = service.cost 
+            const clientId = service.client_id
+            const clientIndex = clientIds.indexOf(clientId)
+            if (clientIndex>-1){
+                if(clientAmounts[clientIndex] ){
+                    clientAmounts[clientIndex] = clientAmounts[clientIndex] + service.cost
+                } else {
+                    clientAmounts[clientIndex]= service.cost
+                }
             }
         })
 
