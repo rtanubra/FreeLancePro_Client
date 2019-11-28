@@ -29,7 +29,7 @@ import config from '../config'
 
 //services
 import AuthService from '../services/authServices'
-import EmailService from '../services/emailServices'
+
 
 class App extends Component{
   
