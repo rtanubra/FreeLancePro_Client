@@ -5,6 +5,8 @@ import './serviceSummary.css'
 import FlpContext from '../../contexts/flpContext'
 import DeleteServiceWarning from '../deleteWarning/deleteServiceWarning'
 
+
+
 class serviceSummary extends Component{
     static contextType =FlpContext 
     state = {
@@ -37,6 +39,7 @@ class serviceSummary extends Component{
             <td>{this.props.cost}</td>
             <td className="css_small_hide" >{this.props.people}</td>
             <td className="css_small_hide" >{promoName}</td>
+            <td className="css_small_hide" >{this.props.service_date? this.props.service_date :"NA"}</td>
             
         </tr>
         </>

@@ -5,7 +5,7 @@ import './clientSummary.css'
 
 import FlpContext from '../../contexts/flpContext'
 import SericeSummary from '../serviceSummary/serviceSummary'
-
+import DateServices from '../../services/dateServices'
 import DeleteWarning from '../../components/deleteWarning/deleteWarning'
 
 class ClientSummary extends Component{
@@ -30,6 +30,7 @@ class ClientSummary extends Component{
                 people = {service.people}
                 promotion_used = {service.promo_id}
                 cost = {service.cost}
+                service_date={DateServices.dbToString(service.service_date)}
                 key={`${service.id}_service`}
             />
         })
@@ -59,10 +60,11 @@ class ClientSummary extends Component{
                     <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Notes</th>
-                        <th>Cost</th>
-                        <th className="css_small_hide" ># People</th>
-                        <th className="css_small_hide" >Promo</th>
+                        <th><i className="fas fa-book-open"> Notes</i></th>
+                        <th><i className="fas fa-dollar-sign"></i></th>
+                        <th className="css_small_hide" ><i className='fas fa-users'></i></th>
+                        <th className="css_small_hide" ><i className="fas fa-gift"></i> Promo</th>
+                        <th className="css_small_hide" ><i className="fas fa-calendar-alt"></i></th>
                     </tr>
                     </thead>
                     <tbody>
