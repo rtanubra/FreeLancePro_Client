@@ -5,6 +5,9 @@ import './addService.css'
 //validation services and error boxes
 import ErrorMessage from '../../components/errorMessage/errorMessage'
 
+//DateServices required to convert from db form <-> date <-> string
+import DateServices from '../../services/dateServices'
+
 //context
 import FlpContext from '../../contexts/flpContext'
 
@@ -186,7 +189,7 @@ class AddService extends Component{
                 notes:this.state.notes,
                 cost:this.state.cost,
                 people:this.state.people,
-                service_date:this.state.date,
+                service_date:DateServices.stringToDate(this.state.date),
                 client_id: parseInt(this.props.match.params.clientId)
             }
             if (this.state.promotion){

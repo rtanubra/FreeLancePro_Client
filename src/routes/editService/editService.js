@@ -6,9 +6,11 @@ import './editService.css'
 //validation services and error boxes
 
 import ErrorMessage from '../../components/errorMessage/errorMessage'
+import DateServices from '../../services/dateServices'
 
 //context
 import FlpContext from '../../contexts/flpContext'
+
 import config from '../../config'
 
 class EditService extends Component{
@@ -20,15 +22,18 @@ class EditService extends Component{
         const service = this.context.services.find(service=>{
             return service.id=== serviceId
         })
-        const notes = service.notes
-        const people = service.people
-        const cost = service.cost
-
+        if (service){
+            const notes = service.notes
+            const people = service.people
+            const cost = service.cost
+            const date = DateServices.dbToString(service.service_date) 
         this.setState({
             notes,
             people,
-            cost
+            cost,
+            date
         })
+        }
     }
     state = {
         notes:"Hair And Makeup",
@@ -36,19 +41,25 @@ class EditService extends Component{
         mainError_message:"",
         cost:360,
         people:3,
+        date:"",
         error:{
             error_notes:"",
             error_cost:"",
-            error_people:""
+            error_people:"",
+            error_date:""
         },
         error_message:{
             error_message_notes:"",
             error_message_cost:"",
-            error_message_people:""
+            error_message_people:"",
+            error_message_date:""
         },
         success:false
     }
-
+    handleDateChange= (event)=>{
+        const date = event.target.value
+        this.setState({date})
+    }
     handleNotesChange=(event)=>{
         const notes = event.target.value
         const mainError = false
@@ -164,7 +175,7 @@ class EditService extends Component{
     }
     handleSubmit= (event)=>{
         event.preventDefault()
-        if (this.state.error.error_cost||this.state.error.error_notes || this.state.error.error_people ){
+        if (this.state.error.error_cost||this.state.error.error_notes || this.state.error.error_people||this.state.error.error_date ){
             //do nothing there is an error
         }
         else{ 
@@ -172,8 +183,10 @@ class EditService extends Component{
                 notes:this.state.notes,
                 cost:this.state.cost,
                 people:this.state.people,
+                service_date:DateServices.stringToDate(this.state.date) ,
                 id:parseInt(this.props.match.params.serviceId)
             }
+
             const url = `${config.API_ENDPOINT}/api/services/${service.id}`
             fetch(url,{
                 method:'PATCH',
@@ -224,6 +237,12 @@ class EditService extends Component{
                         <label htmlFor="js_service_people" >Number of people serviced</label>
                         <input required onChange={this.handlePeopleChange} value={this.state.people} id="js_service_people" name="js_service_people" type="number" min="0" max="100" step="1" />
                         <br/>
+
+                        {this.state.error.error_date ? <ErrorMessage message={this.state.error_message.error_message_date } />:"" }
+                        <label htmlFor="js_service_date" >Service date</label>
+                        <input required onChange={this.handleDateChange} value={this.state.date} id="js_service_date" name="js_service_date" type="date"  />
+                        <br/>
+
 
 
                         <button className="css_button css_add_service_success" type="submit"  >Save Changes</button>
