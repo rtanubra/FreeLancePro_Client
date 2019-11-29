@@ -19,15 +19,18 @@ class AddService extends Component{
         notes:"",
         cost:"",
         people:"",
+        date:"",
         error:{
             error_notes:"",
             error_cost:"",
-            error_people:""
+            error_people:"",
+            error_date:""
         },
         error_message:{
             error_message_notes:"",
             error_message_cost:"",
-            error_message_people:""
+            error_message_people:"",
+            error_message_date:""
         },
         success:false,
         promotion:false,
@@ -40,16 +43,24 @@ class AddService extends Component{
         let promo = ""
         let promotion = false
         let promoId = false
-        if (client.open_promo){
-            promo  = this.context.promotions.find(promo=>{
-                return promo.id ===client.open_promo
-            })
-            promotion = promo.name
-            promoId = promo.id 
+        if (client){
+            if (client.open_promo){
+                promo  = this.context.promotions.find(promo=>{
+                    return promo.id ===client.open_promo
+                })
+                promotion = promo.name
+                promoId = promo.id 
+            }
         }
         this.setState({
             promotion,
             promoId
+        })
+    }
+    handleDateChange=(event)=>{
+        const date = event.target.value
+        this.setState({
+            date,
         })
     }
     handleNotesChange=(event)=>{
@@ -80,7 +91,7 @@ class AddService extends Component{
             error:{
                 error_notes,
                 error_cost,
-                error_people
+                error_people,
             },
             error_message:{
                 error_message_notes,
@@ -167,7 +178,7 @@ class AddService extends Component{
     }
     handleSubmit= (event)=>{
         event.preventDefault()
-        if (this.state.error.error_cost||this.state.error.error_notes || this.state.error.error_people ){
+        if (this.state.error.error_cost||this.state.error.error_notes || this.state.error.error_people||this.state.error.error_date ){
             //do nothing there is an error
         }
         else {
@@ -175,6 +186,7 @@ class AddService extends Component{
                 notes:this.state.notes,
                 cost:this.state.cost,
                 people:this.state.people,
+                service_date:this.state.date,
                 client_id: parseInt(this.props.match.params.clientId)
             }
             if (this.state.promotion){
@@ -239,7 +251,16 @@ class AddService extends Component{
                         {this.state.error.error_people? <ErrorMessage message={this.state.error_message.error_message_people} />:"" }
                         <label htmlFor="js_service_people" >Number of people serviced</label>
                         <br/>
+    
                         <input required onChange={this.handlePeopleChange} placeholder="2" value={this.state.people} id="js_service_people" name="js_service_people" type="number" min="0" max="100" step="1" />
+                        <br/>
+
+                        {this.state.error.error_date?<ErrorMessage message={this.state.error_message.error_message_date}/>:""}
+                        <label htmlFor="js_service_date" >Service Date</label>
+                        <br/>
+
+                        <input required onChange={this.handleDateChange} type="date" value={this.state.date}/>
+                        
                         <br/>
 
                         {this.state.promotion? <p>{`Client has an open promo! APPLY => ${this.state.promotion}`}</p>:""}
