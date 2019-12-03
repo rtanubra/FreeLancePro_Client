@@ -62,9 +62,10 @@ class ClientSummary extends Component{
                         <th>ID</th>
                         <th><i className="fas fa-book-open"> Notes</i></th>
                         <th><i className="fas fa-dollar-sign"></i></th>
+                        <th ><i className="fas fa-calendar-alt"></i></th>
                         <th className="css_small_hide" ><i className='fas fa-users'></i></th>
                         <th className="css_small_hide" ><i className="fas fa-gift"></i> Promo</th>
-                        <th className="css_small_hide" ><i className="fas fa-calendar-alt"></i></th>
+                        
                     </tr>
                     </thead>
                     <tbody>

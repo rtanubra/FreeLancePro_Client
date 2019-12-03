@@ -37,9 +37,10 @@ class serviceSummary extends Component{
             </td>
             <td>{this.props.notes}</td>
             <td>{this.props.cost}</td>
+            <td  >{this.props.service_date? this.props.service_date :"NA"}</td>
             <td className="css_small_hide" >{this.props.people}</td>
             <td className="css_small_hide" >{promoName}</td>
-            <td className="css_small_hide" >{this.props.service_date? this.props.service_date :"NA"}</td>
+            
             
         </tr>
         </>
