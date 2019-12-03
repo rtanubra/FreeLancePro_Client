@@ -4,7 +4,7 @@ import './serviceSummary.css'
 
 import FlpContext from '../../contexts/flpContext'
 import DeleteServiceWarning from '../deleteWarning/deleteServiceWarning'
-
+import NumberService from '../../services/numberServices'
 
 
 class serviceSummary extends Component{
@@ -36,7 +36,7 @@ class serviceSummary extends Component{
                 <span><button onClick={this.toggleDelete}><i className="fa fa-trash" aria-hidden="true"></i></button></span>
             </td>
             <td>{this.props.notes}</td>
-            <td>{this.props.cost}</td>
+            <td>{ NumberService.dollarFormat(this.props.cost)}</td>
             <td  >{this.props.service_date? this.props.service_date :"NA"}</td>
             <td className="css_small_hide" >{this.props.people}</td>
             <td className="css_small_hide" >{promoName}</td>
