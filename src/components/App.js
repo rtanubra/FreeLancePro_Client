@@ -68,7 +68,7 @@ class App extends Component{
   }
   fetchLoginTest=()=>{
     const url = `${config.API_ENDPOINT}/api/login`
-    const email = "cmR0YW51YnJhdGFAZ21haWwuY29t"
+    const email = "dGVzdGVtYWlsQGdtYWlsLmNvbQ=="
     const password = "dGVzdDE"
     const auth = {email,password}
     fetch(url,{
