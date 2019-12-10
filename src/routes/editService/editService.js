@@ -227,7 +227,8 @@ class EditService extends Component{
                         {this.state.error.error_notes? <ErrorMessage message={this.state.error_message.error_message_notes} />:"" }
                         <label htmlFor="js_service_notes" >Service Notes</label>
                         <input required onChange={this.handleNotesChange} value={this.state.notes} id="js_service_notes" name="js_service_notes" type="text" />
-
+                        <br/>
+                        
                         {this.state.error.error_cost? <ErrorMessage message={this.state.error_message.error_message_cost} />:"" }
                         <label htmlFor="js_service_cost" >Total Cost</label>
                         <input required onChange={this.handleCostChange} value={this.state.cost} id="js_service_cost" name="js_service_cost" type="number" min="-100000" max="100000" step="0.01" />

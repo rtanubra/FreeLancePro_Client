@@ -89,11 +89,14 @@ class App extends Component{
       }
     })
   }
+  
   fetchPromos=()=>{
     const url = `${config.API_ENDPOINT}/api/promos/`
+    const user_id = window.localStorage.getItem('user_id')?window.localStorage.getItem('user_id') :1
     fetch(url,{
       headers: new Headers ({
-        "Authorization":window.localStorage.getItem('FLPauthToken') ? `bearer ${window.localStorage.getItem('FLPauthToken')}`:""
+        "Authorization":window.localStorage.getItem('FLPauthToken') ? `bearer ${window.localStorage.getItem('FLPauthToken')}`:"",
+        "user_id":user_id
       })
     }).then(res=>res.json()).then(jsonRes=>{
       if (jsonRes.error){
@@ -106,9 +109,11 @@ class App extends Component{
   }
   fetchServices=()=>{
     const url = `${config.API_ENDPOINT}/api/services/`
+    const user_id = window.localStorage.getItem('user_id')?window.localStorage.getItem('user_id') :1
     fetch(url,{
       headers: new Headers ({
-        "Authorization":window.localStorage.getItem('FLPauthToken') ? `bearer ${window.localStorage.getItem('FLPauthToken')}`:""
+        "Authorization":window.localStorage.getItem('FLPauthToken') ? `bearer ${window.localStorage.getItem('FLPauthToken')}`:"",
+        "user_id":user_id
       })
     }).then(res=>res.json()).then(jsonRes=>{
       if (jsonRes.error){
@@ -123,9 +128,11 @@ class App extends Component{
 
   fetchClients=()=>{
     const url = `${config.API_ENDPOINT}/api/clients/`
+    const user_id = window.localStorage.getItem('user_id')?window.localStorage.getItem('user_id') :1
     fetch(url,{
       headers : new Headers({
-        'Authorization': window.localStorage.getItem('FLPauthToken') ? `bearer ${window.localStorage.getItem('FLPauthToken')}`:""
+        'Authorization': window.localStorage.getItem('FLPauthToken') ? `bearer ${window.localStorage.getItem('FLPauthToken')}`:"",
+        "user_id":user_id
       })
     }).then(res=>res.json()).then(jsonRes=>{
       if (jsonRes.error){

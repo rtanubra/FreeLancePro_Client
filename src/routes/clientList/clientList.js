@@ -24,7 +24,7 @@ class ClientList extends Component{
     render(){
 
         const clientListForUser = this.context.clients.filter(client=>{
-            return client.user_id=== 1
+            return client.user_id === parseInt(window.localStorage.getItem('user_id'))
         })
         
         let clientListTables ,clientListFilterd
