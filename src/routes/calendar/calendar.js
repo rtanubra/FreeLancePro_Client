@@ -9,7 +9,11 @@ class Calender extends Component{
             
             <h2 className="css_h2_header">Welcome Back Finese</h2>
             <h3 className="css_h2_header" >Calendar View </h3>
+            
+            <div className="css_body_middle" >
             <NavBar active="calendar" />
+            </div>
+            
             <div className="css_body_middle">
             <a target="_blank" href="https://calendar.google.com/event?action=TEMPLATE&amp;tmeid=N3U3ZTA5YW0ybjBvZjNsaW9ja25scHVqMW4gcmV5dC5hcHBzQG0&amp;tmsrc=reyt.apps%40gmail.com">
                 <button className="css_addClient" >Add an Event</button>
