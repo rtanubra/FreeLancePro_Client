@@ -48,7 +48,11 @@ class Analytics extends Component{
         return (<>
         <h2 className="css_h2_header">Welcome Back Finese</h2>
         <h3 className="css_h2_header" >Analytics View </h3>
+        
+        <div className="css_body_middle" >
         <NavBar active="analytics" />
+        </div>
+        
         <div className="css_body_middle">
             <h2>Analytics</h2>
             <BarGraph labels={clientNames?clientNames:undefined} values={clientAmounts?clientAmounts:undefined} label="Amount $"  title="Amount spent per client ($) - bar graph" />
