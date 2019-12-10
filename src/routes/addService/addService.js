@@ -181,6 +181,7 @@ class AddService extends Component{
     }
     handleSubmit= (event)=>{
         event.preventDefault()
+        const user_id = window.localStorage.getItem('user_id') ? parseInt(window.localStorage.getItem('user_id')) : 1
         if (this.state.error.error_cost||this.state.error.error_notes || this.state.error.error_people||this.state.error.error_date ){
             //do nothing there is an error
         }
@@ -190,7 +191,8 @@ class AddService extends Component{
                 cost:this.state.cost,
                 people:this.state.people,
                 service_date:DateServices.stringToDate(this.state.date),
-                client_id: parseInt(this.props.match.params.clientId)
+                client_id: parseInt(this.props.match.params.clientId),
+                user_id:user_id
             }
             if (this.state.promotion){
                 service.promo_id =  this.state.promoId

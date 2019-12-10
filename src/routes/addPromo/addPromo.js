@@ -43,6 +43,7 @@ class AddPromo extends Component{
     }
     handleSubmit = (event)=>{
         event.preventDefault()
+        const user_id = window.localStorage.getItem('user_id') ? parseInt(window.localStorage.getItem('user_id')) : 1
         if(this.state.error.error_description ||this.state.error.error_end || this.state.error.error_name ||this.state.error.error_start ){
             //do nothing because there is an error
         }
@@ -51,6 +52,7 @@ class AddPromo extends Component{
             const promo = {
                 name:this.state.name,
                 description:this.state.description,
+                user_id:user_id
             }
             if (this.state.start){
                 promo.date_created = DateServices.stringToDate(this.state.start)

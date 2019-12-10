@@ -35,15 +35,18 @@ class AddClient extends Component{
     }
     handleSubmit = (event) =>{
         event.preventDefault()
+        const user_id = window.localStorage.getItem('user_id') ? parseInt(window.localStorage.getItem('user_id')) : 1
+
         if (this.state.error.error_email || this.state.error.error_name || this.state.error.error_phone ){
             //do nothing have errors
         }
+        
         else {
             const client = {
                 name:this.state.name,
                 phone:this.state.phone,
                 email:this.state.email,
-                user_id:1
+                user_id:user_id
             }
             const url = `${config.API_ENDPOINT}/api/clients/`
             fetch(url,{
