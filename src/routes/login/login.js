@@ -45,6 +45,9 @@ class Login extends Component{
                     const error_server_message = ""
                     
                     this.context.logIn(jsonRes.authToken,jsonRes.payload)
+                    this.context.fetchServices()
+                    this.context.fetchClients()
+                    this.context.fetchPromos()
                     this.setState({
                         error_server,
                         error_server_message,
