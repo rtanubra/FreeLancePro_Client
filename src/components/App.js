@@ -82,10 +82,11 @@ class App extends Component{
       else{
         this.logIn(jsonRes.authToken,jsonRes.payload)
         //console.log(jsonRes.authToken)
+        /* no longer needed because we fetch at login
         this.fetchServices()
         this.fetchClients()
         this.fetchPromos()
-        
+        */
       }
     })
   }
@@ -148,6 +149,9 @@ class App extends Component{
     const loggedIn = true
     AuthService.saveToken(token,payload)
     this.setState({loggedIn})
+    this.fetchServices()
+    this.fetchClients()
+    this.fetchPromos()
   }
   logOut = ()=>{
     const loggedIn= false
