@@ -55,6 +55,8 @@ class ClientSummary extends Component{
                 <p>Email : {this.props.email}</p>
                 <p>Phone : {this.props.phone}</p>
                 <p>Open Promotion : {promoName}</p>
+                {this.props.client.more_notes? <p>Client Notes: <br/> {this.props.client.more_notes} </p>:""}
+                {this.props.client.adress? <p>Client Adress: <br/> {this.props.client.adress} </p>:""}
                 
                 <table>
                     <thead>

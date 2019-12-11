@@ -21,6 +21,8 @@ class AddClient extends Component{
         name:"",
         phone:"",
         email:"",
+        more_notes:"",
+        adress:"",
         error:{
             error_name:"",
             error_phone:"",
@@ -46,6 +48,8 @@ class AddClient extends Component{
                 name:this.state.name,
                 phone:this.state.phone,
                 email:this.state.email,
+                more_notes:this.state.more_notes,
+                adress:this.state.adress,
                 user_id:user_id
             }
             const url = `${config.API_ENDPOINT}/api/clients/`
@@ -138,6 +142,16 @@ class AddClient extends Component{
         })
     }
 
+    handleNotesChange = (event)=>{
+        const more_notes = event.target.value
+        this.setState({more_notes})
+    }
+
+    handleAdressChange = (event)=>{
+        const adress = event.target.value
+        this.setState({adress})
+    }
+
     handleNameChange = (event)=>{
         const name= event.target.value;
         const mainError = false
@@ -186,14 +200,24 @@ class AddClient extends Component{
                         <label htmlFor="js_client_name" >Name</label>
                         <input required onChange={this.handleNameChange} placeholder="first last" value={this.state.name} id="js_client_name" name="js_client_name" type="text" />
                         <br/>
+
                         {this.state.error.error_phone? <ErrorMessage message={this.state.error_message.error_message_phone} />:"" }
                         <label htmlFor="js_client_phone" >Phone</label>
                         <input required type="text" onChange={this.handleNumberChange} placeholder="111-222-3333" name="js_client_phone" id="js_client_phone" value={this.state.phone} />
                         <br/>
+
                         {this.state.error.error_email? <ErrorMessage message={this.state.error_message.error_message_email} />:"" }
                         <label htmlFor="js_client_email" >Email</label>
                         <input required type="email" onChange={this.handleEmailChange} placeholder="clientEmail@gmail.com" name="js_client_email" id="js_client_email" value={this.state.email} />
                         <br/>
+
+                        <label htmlFor="js_client_more_notes" >Client Notes (Optional)</label>
+                        <textarea  onChange={this.handleNotesChange} placeholder="Add client notes here (optional)" name="js_client_more_notes" id="js_client_more_notes" value={this.state.more_notes} />
+                        <br/>
+
+                        <label htmlFor="js_client_adress" >Client Adress (Optional)</label>
+                        <textarea  onChange={this.handleAdressChange} placeholder="Add client adress here (optional)" name="js_client_adress" id="js_client_adress" value={this.state.adress} />
+
                         <button className="css_button css_add_client_success" type="submit"  >Submit Client</button>
 
                 </form>

@@ -42,6 +42,7 @@ class ClientList extends Component{
                 phone={client.phone} 
                 email={client.email}
                 promo= {client.open_promo}
+                client={client}
                 key={`${client.id}_client`} />
         })
         if (!this.context.loggedIn){
@@ -49,7 +50,7 @@ class ClientList extends Component{
         }
         return (
             <>
-            <h2 className="css_h2_header">Welcome Back Finese</h2>
+            <h2 className="css_h2_header">Welcome Back</h2>
             <h3 className="css_h2_header" >Clients View </h3>
             <div className="css_body_middle" >
             <NavBar active="clients" />
