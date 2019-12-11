@@ -14,7 +14,7 @@ class Analytics extends Component{
     static contextType = FlpContext
 
     render(){
-        console.log(this.context.services)
+
         const clientNames= this.context.clients.map(client=>{
             return client.name
         })
