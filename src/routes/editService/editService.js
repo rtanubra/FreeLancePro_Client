@@ -27,11 +27,13 @@ class EditService extends Component{
             const people = service.people
             const cost = service.cost
             const date = DateServices.dbToString(service.service_date) 
+            const more_notes = service.more_notes
         this.setState({
             notes,
             people,
             cost,
-            date
+            date,
+            more_notes
         })
         }
     }
@@ -42,6 +44,7 @@ class EditService extends Component{
         cost:360,
         people:3,
         date:"",
+        more_notes:"",
         error:{
             error_notes:"",
             error_cost:"",
@@ -173,6 +176,10 @@ class EditService extends Component{
             }
         })
     }
+    handleMoreNotesChange= (event)=>{
+        const more_notes = event.target.value
+        this.setState({more_notes})
+    }
     handleSubmit= (event)=>{
         event.preventDefault()
         if (this.state.error.error_cost||this.state.error.error_notes || this.state.error.error_people||this.state.error.error_date ){
@@ -183,6 +190,7 @@ class EditService extends Component{
                 notes:this.state.notes,
                 cost:this.state.cost,
                 people:this.state.people,
+                more_notes:this.state.more_notes,
                 service_date:DateServices.stringToDate(this.state.date) ,
                 id:parseInt(this.props.match.params.serviceId)
             }
@@ -243,7 +251,10 @@ class EditService extends Component{
                         <label htmlFor="js_service_date" >Service date</label>
                         <input required onChange={this.handleDateChange} value={this.state.date} id="js_service_date" name="js_service_date" type="date"  />
                         <br/>
-
+                        
+                        <label htmlFor="js_service_more_notes" >Extended Service Notes (optional)</label>
+                        <textarea  onChange={this.handleMoreNotesChange} placeholder="Add additional notes here if required " name="js_service_more_notes" id="js_service_more_notes" value={this.state.more_notes} />
+                        <br/>
 
 
                         <button className="css_button css_add_service_success" type="submit"  >Save Changes</button>

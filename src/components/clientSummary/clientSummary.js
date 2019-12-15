@@ -25,6 +25,7 @@ class ClientSummary extends Component{
 
         let serviceSummaries = clientServices.map(service=>{
             return <SericeSummary
+                service={service}
                 id={service.id}
                 notes ={service.notes}
                 people = {service.people}

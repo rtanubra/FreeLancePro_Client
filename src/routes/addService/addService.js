@@ -23,6 +23,7 @@ class AddService extends Component{
         cost:"",
         people:"",
         date:"",
+        more_notes:"",
         error:{
             error_notes:"",
             error_cost:"",
@@ -102,6 +103,10 @@ class AddService extends Component{
                 error_message_people
             }
         })
+    }
+    handleMoreNotesChange = (event)=>{
+        const more_notes = event.target.value
+        this.setState({more_notes})
     }
     handlePeopleChange = (event)=>{
         let people = event.target.value
@@ -197,6 +202,9 @@ class AddService extends Component{
             if (this.state.promotion){
                 service.promo_id =  this.state.promoId
             }
+            if (this.state.more_notes){
+                service.more_notes=this.state.more_notes
+            }
             // run add here.
             const url = `${config.API_ENDPOINT}/api/services/`
             fetch(url,{
@@ -265,7 +273,10 @@ class AddService extends Component{
                         <br/>
 
                         <input required onChange={this.handleDateChange} type="date" value={this.state.date}/>
-                        
+                        <br/>
+
+                        <label htmlFor="js_service_more_notes" >Extended Service Notes (optional)</label>
+                        <textarea  onChange={this.handleMoreNotesChange} placeholder="Add additional notes here if required " name="js_service_more_notes" id="js_service_more_notes" value={this.state.more_notes} />
                         <br/>
 
                         {this.state.promotion? <p>{`Client has an open promo! APPLY => ${this.state.promotion}`}</p>:""}
