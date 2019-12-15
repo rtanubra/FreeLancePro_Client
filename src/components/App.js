@@ -149,9 +149,11 @@ class App extends Component{
     const loggedIn = true
     AuthService.saveToken(token,payload)
     this.setState({loggedIn})
-    this.fetchServices()
-    this.fetchClients()
     this.fetchPromos()
+    this.fetchClients()
+    this.fetchServices()
+    
+    
   }
   logOut = ()=>{
     const loggedIn= false
