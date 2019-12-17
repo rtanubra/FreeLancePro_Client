@@ -9,7 +9,14 @@ class EmailBody extends Component{
     state={
         subject:this.props.subject?this.props.subject:"Filled Subject",
         toEmail:this.props.toEmail? this.props.toEmail:"rdtanubrata1@gmail.com",
-        body:this.props.body?this.props.body:"Type Email here",
+        body:this.props.body?this.props.body:"Input email here",
+        preBody:`
+            <style>
+                table, th, td {
+                border: 1px solid black;
+                }
+            </style>
+        `,
         success:false,
         errorOverall:false,
         errorOverallMessage:""
@@ -19,9 +26,11 @@ class EmailBody extends Component{
         const emails = {
             subject:this.state.subject,
             toEmail:this.state.toEmail,
-            body:this.state.body
+            //pre is used below so the email can be viewed in html as it is typed (with correct spacing)
+            body:`${this.state.preBody?this.state.preBody:""}<pre>${this.state.body}</pre>`
         }
-        console.log(emails)
+        emails.toEmail = this.state.toEmail.split(" ").join('').split(',')
+        
         //now ready for fetch to send to new API endpoints to handle mutable emails
         
         //did not create this endpoint yet
@@ -78,7 +87,7 @@ class EmailBody extends Component{
             <div className="css_body_middle">
                 <form onSubmit={this.handleSubmit}>
 
-                    <label htmlFor="js_email_toEmail" >To</label>
+                    <label htmlFor="js_email_toEmail" >To (comma seperated)</label>
                     <input required onChange={this.handletoEmailChange} value={this.state.toEmail} id="js_email_toEmail" name="js_email_toEmail" type="text" />
                     <br/>
 
