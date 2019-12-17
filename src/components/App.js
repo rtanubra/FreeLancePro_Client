@@ -19,6 +19,7 @@ import EditPromo from '../routes/editPromo/editPromo'
 import GivePromo from '../routes/givePromo/givePromo'
 import Calendar from '../routes/calendar/calendar'
 import Analytics from '../routes/analytics/analytics'
+import EmailBody from '../routes/emailBody/emailBody'
 
 //contexts
 import FlpContext from '../contexts/flpContext'
@@ -292,6 +293,12 @@ class App extends Component{
             exact
             path={'/analytics'}
             component = {Analytics}
+          
+          />
+          <Route
+            exact
+            path={'/email'}
+            component={EmailBody}
           
           />
           <Route
