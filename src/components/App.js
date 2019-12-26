@@ -49,6 +49,9 @@ class App extends Component{
   }
   componentDidMount(){
     const token = window.localStorage.getItem('FLPauthToken')
+    this.setState({
+      loading:false
+    })
     if(token){
       this.fetchCheckToken(token).then(res=>{
         if(res.error){
@@ -67,7 +70,13 @@ class App extends Component{
     }
     
   }
+  loadingFx=()=>{
+    this.setState({
+      loading:true
+    })
+  }
   fetchLoginTest=()=>{
+    this.loadingFx()
     const url = `${config.API_ENDPOINT}/api/login`
     const email = "dGVzdGVtYWlsQGdtYWlsLmNvbQ=="
     const password = "dGVzdDE"
@@ -82,6 +91,7 @@ class App extends Component{
       }
       else{
         this.logIn(jsonRes.authToken,jsonRes.payload)
+        
         //console.log(jsonRes.authToken)
         /* no longer needed because we fetch at login
         this.fetchServices()
@@ -148,8 +158,9 @@ class App extends Component{
   
   logIn = (token,payload)=>{
     const loggedIn = true
+    const loading = false
     AuthService.saveToken(token,payload)
-    this.setState({loggedIn})
+    this.setState({loggedIn,loading})
     this.fetchPromos()
     this.fetchClients()
     this.fetchServices()
@@ -214,6 +225,7 @@ class App extends Component{
     const contextValue = {
             ...this.state
     }
+    contextValue.loadingFx= this.loadingFx
     contextValue.promoDelete = this.promoDelete
     contextValue.fetchLoginTest = this.fetchLoginTest
     contextValue.fetchPromos=this.fetchPromos

@@ -1,5 +1,6 @@
 const StartingContext= {
     loggedIn:false,
+    loading:false,
     clients:[
         
     ],

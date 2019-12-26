@@ -6,7 +6,7 @@ import {Redirect} from 'react-router-dom'
 import config from '../../config'
 
 import FlpContext from '../../contexts/flpContext'
-
+import Loader from '../../components/loader/loader'
 class Login extends Component{
     static contextType= FlpContext
     state={
@@ -22,6 +22,7 @@ class Login extends Component{
     }
     handleSubmit = (event)=>{
         event.preventDefault()
+        this.context.loadingFx()
         const url = `${config.API_ENDPOINT}/api/login`
         const email = btoa(this.state.email)
         const password = btoa(this.state.password)
@@ -94,7 +95,7 @@ class Login extends Component{
                 <br></br>
 
                 <div className="clearfix">
-
+                {this.context.loading?<Loader/>:""}
                 <button className="css_button" type="submit">Login</button>
                 <button type="button" className="css_button css_cancel_button">Cancel</button>
                 

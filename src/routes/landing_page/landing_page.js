@@ -3,9 +3,11 @@ import './landing_page.css'
 import {Link, Redirect} from 'react-router-dom'
 
 import FlpContext from '../../contexts/flpContext'
+import Loader from '../../components/loader/loader'
 
 class LandingPage extends Component{
     static contextType =FlpContext
+
     render(){
         if (this.context.loggedIn){
             return <Redirect to={"/client"} />
@@ -13,6 +15,7 @@ class LandingPage extends Component{
         return(
             <div className="css_landing_page">
                 <div className="css_body_middle">
+                    
                     <h2 className="css_lp_h2_header">  What is Freelance Pro </h2>
                     <p>
                         Our mission is to create a lightweight and simple to use Client Relationship Manager (CRM) for the Freelancing professional.
@@ -48,6 +51,7 @@ class LandingPage extends Component{
                     </p>
                     <hr></hr>
                     <p>Test User Login</p>
+                    {this.context.loading?<Loader/>:""}
                     <Link to={'/client'}><button onClick={()=>{this.context.fetchLoginTest()}} className="css_button">Login</button></Link>
                 </div>
             </div>
