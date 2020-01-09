@@ -46,6 +46,7 @@ input[type=text], input[type=password],input[type=email] ,input[type=tel],input[
   display: inline-block;
   border: none;
   background: #f1f1f1;
+  font-size: 16px;
 }
 textarea{
   width: 80%;
@@ -54,6 +55,7 @@ textarea{
   display: inline-block;
   border: none;
   background: #f1f1f1;
+  font-size: 16px;
 
 }
 .css_button {
