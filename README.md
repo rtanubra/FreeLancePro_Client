@@ -100,10 +100,68 @@ error
 
 ### `Promos`
 
-promos is protected. All protected endpoints require an authentication header. Authentication header is a bearer token with an authtoken obtained from Authorization.
+Promos endpoint is protected. All protected endpoints require an authentication header. Authentication header is a bearer token with an authtoken obtained from Authorization.
 
-#### `GET /promos`
+#### `GET: /promos`
 
 Gets all promotions from flp_promos table
 
 Success returns an array of promotion objects
+
+#### `GET: /promos/{promoId}`
+
+Gets a single promotion object from flp_promos table
+
+Success returns a single promotion object
+
+Failure returns an error.
+
+#### `POST: /promos`
+
+Posts a single promotion object into flp_promos
+
+Requires body to contain an object with:
+<ul>
+    <li>user_id *required</li>
+    <li>name *required</li>
+    <li>description *required</li>
+    <li>date_created *optional</li>
+    <li>date_ending</li>
+</ul>
+
+Success returns a single promtion object (the object created)
+
+Failure returns a single object {error:######}
+
+### `Clients`
+
+Clients endpoint is protected. All protected endpoints require an authentication header. Authentication header is a bearer token with an authtoken obtained from Authorization.
+
+#### `GET: /clients`
+
+Gets all the clients in flp_clients
+Control with displaying clients for specific user is controlled by the front end application.  
+
+#### `POST: /clients`
+
+Posts a single client object into flp_clients
+
+Body requires:
+
+<ul>
+    <li>user_id *required</li>
+    <li>name *required</li>
+    <li>email *required</li>
+    <li>phone *required</li>
+    <li>description *optional</li>
+</ul>
+
+Success will return a single client object (the object created)
+
+Failure will return a single object {error:#######}
+
+#### `GET /clients/{clientId}`
+
+Gets a single client object
+
+Gets a single client from flp_clients
