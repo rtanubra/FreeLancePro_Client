@@ -160,8 +160,24 @@ Success will return a single client object (the object created)
 
 Failure will return a single object {error:#######}
 
-#### `GET /clients/{clientId}`
-
-Gets a single client object
+#### `GET: /clients/{clientId}`
 
 Gets a single client from flp_clients
+
+#### `DELETE: /clients/{clientId}`
+
+Deletes a single client object from flp_clients
+
+#### `PATCH: /clients/{clientId}`
+
+Updates a single client object at flp_clients
+
+Requires a body with all optional values. Only provide values to be updated
+
+<ul>
+    <li>user_id *optional</li>
+    <li>name *optional</li>
+    <li>email *optional</li>
+    <li>phone *optional</li>
+    <li>description *optional</li>
+</ul>
