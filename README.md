@@ -71,3 +71,39 @@ All return objects (if present) will be in JSON objects. All input bodies (if re
     <li>Services</li>
     <li>Emails (Continuing Development)</li>
 </ol>
+
+### `Authentication`
+
+#### `POST: /login`
+
+Posts a user authentication for login. 
+Body should include:
+
+<ul>
+    <li>email - base 64 encoded</li>
+    <li>password - base 64 encoded</li>
+</ul>
+
+Success will return:
+<ul>
+    <li>authToken</li>
+    <li>Payload
+        <ul>
+            <li>user_id</li>
+            <li>email</li>
+        </ul>
+    </li>
+</ul>
+
+Failure will return:
+error
+
+### `Promos`
+
+promos is protected. All protected endpoints require an authentication header. Authentication header is a bearer token with an authtoken obtained from Authorization.
+
+#### `GET /promos`
+
+Gets all promotions from flp_promos table
+
+Success returns an array of promotion objects
