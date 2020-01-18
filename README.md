@@ -172,7 +172,7 @@ Deletes a single client object from flp_clients
 
 Updates a single client object at flp_clients
 
-Requires a body with all optional values. Only provide values to be updated
+Requires a body with all values. Only provide values to be updated
 
 <ul>
     <li>user_id *optional</li>
@@ -181,3 +181,57 @@ Requires a body with all optional values. Only provide values to be updated
     <li>phone *optional</li>
     <li>description *optional</li>
 </ul>
+
+### `Services`
+
+Services endpoint is protected. All protected endpoints require an authentication header. Authentication header is a bearer token with an authtoken obtained from Authorization.
+
+#### `GET: /services`
+
+Gets all the services in flp_services
+Control for displaying services for specific user is controlled by the front end application.  
+
+#### `POST: /services`
+
+Posts a single service object into flp_services
+object should contain below:
+
+<ul>
+    <li>notes *required</li>
+    <li>cost *required</li>
+    <li>people *required</li>
+    <li>promo_id *optional</li>
+    <li>client_id *required</li>
+    <li>user_id *required</li>
+</ul>
+
+Success returns a single service object.
+
+Failure returns a single object {error:####}
+
+#### `GET: /services/{serviceId}`
+
+Gets a single service object if available.
+
+
+#### `DELETE: /services/{serviceId}`
+
+Deletes a single service object if available.
+
+#### `PATCH: /services/{serviceId}`
+
+Updates a single client object at flp_clients
+
+Requires a body with optional values. Only provide values to be updated.
+
+<ul>
+    <li>notes *optional</li>
+    <li>cost *optional</li>
+    <li>people *optional</li>
+    <li>promo_id *optional</li>
+    <li>client_id *optional</li>
+</ul>
+
+### `Emails` -Under Continuing Development
+
+Emails API can be tailored to each specific user. This functionality may require specialized solution because some email provider no longer allow SMTP functionality. Gmail, is proving more and more challenging when providing access to emails to less secure applications.
