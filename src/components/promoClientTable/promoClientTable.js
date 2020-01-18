@@ -33,6 +33,7 @@ class PromoClientTable extends Component{
         })
 
     }
+    /**Email is under construction because of SMTP removal for gmail */
     emailOut = ()=>{
         const clients = this.state.clientsToAdd.map(client=>{
             return parseInt(client)
@@ -48,7 +49,6 @@ class PromoClientTable extends Component{
         }
         const emails = []
         const names = []
-
         if (clientList.length>0){
             clientList.map(cl=>{
                 emails.push(cl[0].email)
@@ -101,7 +101,8 @@ class PromoClientTable extends Component{
     }
     handleSubmit = (event)=>{
         event.preventDefault()
-        this.emailOut()
+        this.updateFetch()
+        //this.emailOut()
     }
     render(){
         const promos = [...this.context.promotions]
@@ -113,8 +114,6 @@ class PromoClientTable extends Component{
                 <td className="css_mid_hide" >{this.findPromoName(client.open_promo,promos)}</td>
                 <td className="css_small_hide" >{client.id}</td>
                 <td className="css_small_hide" >{client.open_promo}</td>
-                
-                
             </tr>)
         }) 
         if (this.state.success){
